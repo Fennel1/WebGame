@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<head>
+    <title>登录</title>
+	
+    <meta charset="utf-8"> 
+    <link rel="stylesheet" type="text/css" href="./css/login.css" /> 
+</head>
+<body background="./img/bg3.jpg" style="background-size:100%;background-attachment: fixed;">
+    <div class="box">
+        <transition name="loginfade">
+                <div class="login" v-show="isright">
+                    <form action="/Tomcat-demo/login" method="post">
+                        <h1 class="title">Login</h1>
+                        <div class="l1">
+                            <span class="text">用户名</span>
+                            <input class="li1" type="text" id="login_name">
+                        </div>
+                        <div class="l2">
+                            <span class="text">密码</span>
+                            <input class="li2" type="password" id="login_password">
+                        </div>
+                        <div id="loginfail"></div>
+                        <div id="lb" @click="login">登录</div>
+<!--                        <input id="lb" type="submit" value="登录">-->
+                    </form>
+                </div>
+        </transition>
+        <transition name="registerfade">
+            <div class="register" v-show="isleft">
+                <form action="/register" method="post">
+                    <h1 class="title">Register</h1>
+                    <div class="l1">
+                        <span class="text">用户名</span>
+                        <input class="li1" type="text" id="reg_name">
+                    </div>
+                    <div class="l2">
+                        <span class="text">密码</span>
+                        <input class="li2" type="password" id="reg_password">
+                    </div>
+                    <div class="l3">
+                        <span class="text">确认密码</span>
+                        <input class="li2" type="password" id="reg_repassword">
+                    </div>
+                    <div id="registerfail"></div>
+                    <div id="rb" @click="register">注册</div>
+<!--                    <input id="rb" type="submit" value="注册">-->
+                </form>
+            </div>
+        </transition>
+        <div class="mask" :class="{ maskleft: isleft, maskright: isright }">
+            <img src="./img/bg1.png" alt="">
+            <h1 id="Hello">{{HelloMessage}}</h1>
+            <div id="move" @click="move">{{moveMessage}}</div>
+            <div id="visitor" @click="visitorlogin">游客登陆</div>
+        </div>
+    </div>
+
+<!--    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>-->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="./js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<head>
+    <title>index</title>
+    <meta charset="utf-8"> 
+    <link rel="stylesheet" type="text/css" href="./css/main.css" />
+    <link rel="stylesheet" href="./font/iconfont.css"> 
+</head>
+<body background="./img/cool-background.png" style="background-size:100%;background-attachment: fixed;">
+<!-- <body> -->
+    <div id="sidebar" :class="{bar:showSidebar}">
+        <div id="showBar" @click="move">
+            <span v-show="showSidebar" class="iconfont icon-right"></span>
+            <span v-show="!showSidebar" class="iconfont icon-left"></span>
+        </div>
+        <div id="sidebarContent">
+            <div class="button" @click="scrollToProfile">Profile</div>
+            <HR>
+            <div class="button" @click="scrollToGame">Game</div>
+            <HR>
+            <div class="button" @click="scrollToRank">Rank</div>
+            <HR>
+            <ul>
+                <li>IP:{{IP}}</li>
+                <li>CID:{{CID}}</li>
+                <li>AREA:{{AREA}}</li>
+                <li>BROWSER:{{BROWSER}}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="header">
+        <div class="time">{{time}}</div>
+        <div class="content"></div>
+        <div class="head">
+            <img :class="{photo:showPhoto, photohover:showPhotoHover}"
+            @mouseenter="show" @mouseleave="hide" 
+            src="./img/bg1.png" alt="">
+        </div>
+        <transition name="profilefade">
+            <div class="profile" v-show="showPhotoHover" @mouseenter="show" @mouseleave="hide">
+                <div id="uid"></div>
+                <div id="name"></div>
+                <HR>
+                <div id="logout" @click="logout">注销账号</div>
+                <div id="upload" >上传头像</div>
+            </div>
+        </transition>
+    </div>
+    <div id="block"></div>
+    <div class="box">
+        <div class="introduction" id="introduction">
+            <p>Profile</p>
+            <div id="text">
+                <span class="iconfont icon-youxijingji">Vue小游戏</span>
+                <span>Snake-贪吃蛇 Tetris-俄罗斯方块 Sweep-扫雷</span>
+
+                <p>点击下图即可跳转游玩</p>
+            </div>
+        </div>
+        <div class="gameList" id="gameList">
+            <p>Game</p>
+            <ul>
+                <li id="snake" @click="gosnake">
+                    <img src="./img/snake.png" alt="">
+                    <div>Snake</div>
+                </li>
+                <li id="tetris" @click="gotetris">
+                    <img src="./img/tetris.png" alt="">
+                    <div>Tetris</div>
+                </li>
+                <li id="sweep" @click="gosweep">
+                    <img src="./img/sweep.png" alt="">
+                    <div>Sweep</div>
+                </li>
+            </ul>
+        </div>
+        <div class="rank" id="rank">
+            <p>Rank</p>
+            <ul>
+                <li id="rsnake">
+                    <div>Snake</div>
+                    <ul>
+                        <li class="ranklist" v-for="(item,index) in rank_snake">
+                            <p>{{index+1}}</p>
+                            <span>{{item.name}}</span>
+                            <span>{{item.score}}</span>
+                        </li>
+                    </ul>
+                </li>
+                <li id="rtetris">
+                    <div>Tetris</div>
+                    <ul>
+                        <li class="ranklist" v-for="(item,index) in rank_tetris">
+                            <p>{{index+1}}</p>
+                            <span>{{item.name}}</span>
+                            <span>{{item.score}}</span>
+                        </li>
+                    </ul>
+                </li>
+                <li id="rsweep">
+                    <div>Sweep</div>
+                    <ul>
+                        <li class="ranklist" v-for="(item,index) in rank_sweep">
+                            <p>{{index+1}}</p>
+                            <span>{{item.name}}</span>
+                            <span>{{item.score}}</span>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer" ></div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>

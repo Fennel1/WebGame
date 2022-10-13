@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.web.mapper.ScoreMapper">
+    <select id="selectByUid" resultType="com.web.pojo.ScoreInfo">
+        select *
+        from scoreinfo
+        where uid = #{uid};
+    </select>
+    <select id="selectAll" resultType="com.web.pojo.ScoreInfo">
+        select *
+        from scoreinfo
+        limit 16;
+    </select>
+    <select id="selectSnakeRank" resultType="com.web.pojo.RankInfo">
+        select name, score_snake as score
+        from scoreinfo
+        where name != 'visitor'
+        order by score_snake desc
+        limit 16;
+    </select>
+    <select id="selectTetrisRank" resultType="com.web.pojo.RankInfo">
+        select name, score_tetris as score
+        from scoreinfo
+        where name != 'visitor'
+        order by score_tetris desc
+        limit 16;
+    </select>
+    <select id="selectSweepRank" resultType="com.web.pojo.RankInfo">
+        select name, score_sweep as score
+        from scoreinfo
+        where name != 'visitor'
+        order by score_sweep
+        limit 16;
+    </select>
+    <select id="selectSnakeByUid" resultType="com.web.pojo.RankInfo">
+        select name, score_snake as score
+        from scoreinfo
+        where uid = #{uid};
+    </select>
+    <select id="selectTetrisByUid" resultType="com.web.pojo.RankInfo">
+        select name, score_tetris as score
+        from scoreinfo
+        where uid = #{uid};
+    </select>
+    <select id="selectSweepByUid" resultType="com.web.pojo.RankInfo">
+        select name, score_sweep as score
+        from scoreinfo
+        where uid = #{uid};
+    </select>
+    <insert id="add">
+        INSERT INTO scoreinfo (uid, score_snake, score_tetris, score_sweep, name)
+        VALUES (#{uid}, #{score_snake}, #{score_tetris}, #{score_sweep}, #{name});
+    </insert>
+    <update id="updateSnakeScore">
+        update scoreinfo
+        set score_snake = #{score}
+        where uid = #{uid};
+    </update>
+    <update id="updateTetrisScore">
+        update scoreinfo
+        set score_tetris = #{score}
+        where uid = #{uid};
+    </update>
+    <update id="updateSweepScore">
+        update scoreinfo
+        set score_sweep = #{score}
+        where uid = #{uid};
+    </update>
+</mapper>

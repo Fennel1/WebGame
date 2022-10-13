@@ -1,0 +1,37 @@
+{
+  "id": "3648064",
+  "name": "web",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "6496026",
+      "name": "Vue",
+      "font_class": "Vue",
+      "unicode": "e799",
+      "unicode_decimal": 59289
+    },
+    {
+      "icon_id": "2198901",
+      "name": "游戏竞技",
+      "font_class": "youxijingji",
+      "unicode": "e61a",
+      "unicode_decimal": 58906
+    },
+    {
+      "icon_id": "31737517",
+      "name": "right",
+      "font_class": "right",
+      "unicode": "e620",
+      "unicode_decimal": 58912
+    },
+    {
+      "icon_id": "31737520",
+      "name": "left",
+      "font_class": "left",
+      "unicode": "e621",
+      "unicode_decimal": 58913
+    }
+  ]
+}
