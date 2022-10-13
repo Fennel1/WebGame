@@ -5,9 +5,9 @@
     <link rel="stylesheet" type="text/css" href="./css/main.css" />
     <link rel="stylesheet" href="./font/iconfont.css"> 
 </head>
-<body background="./img/cool-background.png" style="background-size:100%;background-attachment: fixed;">
+<body background="./img/cool-background.png" style="background-size:100%;background-attachment: fixed;" unselectable="on" onselectstart="return false;" style="-moz-user-select:none;">
 <!-- <body> -->
-    <div id="sidebar" :class="{bar:showSidebar}">
+    <div id="sidebar" :class="{bar:showSidebar}" >
         <div id="showBar" @click="move">
             <span v-show="showSidebar" class="iconfont icon-right"></span>
             <span v-show="!showSidebar" class="iconfont icon-left"></span>
@@ -46,7 +46,7 @@
         </transition>
     </div>
     <div id="block"></div>
-    <div class="box">
+    <div class="box" >
         <div class="introduction" id="introduction">
             <p>Profile</p>
             <div id="text">

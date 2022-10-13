@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./font/iconfont.css">
 </head>
 
-<body background="./img/cool-background.png" style="background-size:100%;background-attachment: fixed;">
+<body background="./img/cool-background.png" style="background-size:100%;background-attachment: fixed;" unselectable="on" onselectstart="return false;" style="-moz-user-select:none;">
     <!-- <body> -->
     <div class="header">
         <div class="time">{{time}}</div>
@@ -27,7 +27,7 @@
         </transition>
     </div>
     <div id="block"></div>
-    <div id="game">
+    <div id="game" unselectable="on" >
         <div v-show="!isgame" id="gameover">GAME OVER</div>
         <div id="board"></div>
         <div id="control">
