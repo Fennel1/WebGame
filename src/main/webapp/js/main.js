@@ -3,16 +3,12 @@ var sidebar = new Vue({
     data: {
         alltrue:true,
         showSidebar: true,
-        browser:"",
-        IP:returnCitySN['cip'],
-        CID:returnCitySN['cid'],
-        AREA:returnCitySN['cname'],
-        BROWSER:"",
+        cols: [0, 1, 2, 3],
+        rows: [0, 1, 2, 3],
     },
     methods: {
         move: function () {
             this.showSidebar = !this.showSidebar;
-            this.getMessages();
         },
         scrollToProfile: function () {
             document.getElementById('introduction').scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
@@ -23,35 +19,9 @@ var sidebar = new Vue({
         scrollToRank: function () {
             document.getElementById('rank').scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
         },
-        getMessages: function () {
-            var agent = navigator.userAgent.toLowerCase();
+        clickLeft(x, y) {
 
-            var regStr_ie = /msie ;/gi;
-            var regStr_ff = /firefox\//gi
-            var regStr_chrome = /chrome\/+/gi;
-            var regStr_saf = /safari\/+/gi;
-
-            //IE
-            if (agent.indexOf("msie") > 0) {
-                this.BROWSER = agent.match(regStr_ie);
-            }
-
-            //firefox
-            if (agent.indexOf("firefox") > 0) {
-                this.BROWSER = agent.match(regStr_ff);
-            }
-
-            //Chrome
-            if (agent.indexOf("chrome") > 0) {
-                this.BROWSER = agent.match(regStr_chrome);
-            }
-
-            //Safari
-            if (agent.indexOf("safari") > 0 && agent.indexOf("chrome") < 0) {
-                this.BROWSER = agent.match(regStr_saf);
-            }
-
-        },
+        }
     }
 })
 
@@ -98,7 +68,10 @@ var header = new Vue({
         },
         logout: function () {
             window.location.href = "login.html";
-        }
+        },
+        homepage: function () {
+            window.location.href = "home.html";
+        },
     }
 })
 
@@ -113,6 +86,9 @@ var game = new Vue({
         },
         gosweep: function () {
             window.location.href="sweep.html";
+        },
+        gosudoku: function () {
+            window.location.href="sudoku.html";
         },
     },
 })

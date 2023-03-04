@@ -44,8 +44,16 @@
             <HR>
             <p>剩余地雷数</p>
             <div class="score">{{mineNum-markNum}}</div>
-            <p>已解锁区域</p>
-            <div class="score">{{openNum}}</div>
+            <p>调节难度</p>
+            <div id="diffcult">
+                <div class="bar_wrap" id="wrap">
+                    <div class="bar_container">
+                        <div class="bar_into" v-resize="resize"></div>
+                    </div>
+                    <div class="bar_drag"></div>
+                </div>
+                <div id="text">{{difficulty}}</div>
+            </div>
             <HR>
             <p>当前用时</p>
             <div class="score" id="score">{{cnt_time}}</div>
