@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<head>
+  <title>PAC-MAN</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="./css/pacman.css" />
+  <link rel="stylesheet" href="./font/iconfont.css">
+</head>
+<body background="./img/cool-background.png" style="background-size:100%;background-attachment: fixed;" unselectable="on" onselectstart="return false;" style="-moz-user-select:none;">
+<!-- <body> -->
+<div class="header">
+  <div class="time">{{time}}</div>
+  <div class="content"></div>
+  <div class="head">
+    <img :class="{photo:showPhoto, photohover:showPhotoHover}"
+         @mouseenter="show" @mouseleave="hide"
+         src="./img/bg1.png" alt="">
+  </div>
+  <transition name="profilefade">
+    <div class="profile" v-show="showPhotoHover" @mouseenter="show" @mouseleave="hide">
+      <div id="uid">uid</div>
+      <div id="name">name</div>
+      <HR>
+      <div id="logout" @click="logout">注销账号</div>
+      <div id="upload">上传头像</div>
+    </div>
+  </transition>
+</div>
+<div id="block"></div>
+<div id="game" unselectable="on">
+  <div id="ghost_win">GHOST WIN</div>
+  <div id="pacman_win">PACMAN WIN</div>
+  <div id="board" @contextmenu.prevent>
+    <div v-for="col in cols" class="board-row">
+      <div v-for="row in rows" :class="{board_block:!isBlock[col][row], block:isBlock[col][row]}">
+        <div :class="{food:!isFood[col][row]}"></div>
+        <div v-if="col==pac_x && row==pac_y && (pac_direct=='' || pac_direct=='left')" class="iconfont role">&#xe60c;</div>
+        <div v-if="col==pac_x && row==pac_y && pac_direct=='right'" class="iconfont role">&#xe600;</div>
+        <div v-if="col==pac_x && row==pac_y && pac_direct=='up'" class="iconfont role">&#xe601;</div>
+        <div v-if="col==pac_x && row==pac_y && pac_direct=='down'" class="iconfont role">&#xe633;</div>
+        <div v-if="col==enemy_x && row==enemy_y && (enemy_direct=='' || enemy_direct=='right' || enemy_direct=='up')" class="iconfont role">&#xe604;</div>
+        <div v-if="col==enemy_x && row==enemy_y && (enemy_direct=='left' || enemy_direct=='down')" class="iconfont role">&#xe606;</div>
+      </div>
+    </div>
+  </div>
+  <div id="control">
+    <div class="buttons" @click="reset">重置游戏</div>
+    <p>调节速度</p>
+    <div id="diffcult">
+      <div class="bar_wrap" id="wrap">
+        <div class="bar_container">
+          <div class="bar_into" v-resize="resize"></div>
+        </div>
+        <div class="bar_drag"></div>
+      </div>
+      <div id="text">{{difficulty}}</div>
+    </div>
+    <HR>
+    <p>当前用时</p>
+    <div class="score" id="score">{{cnt_time}}</div>
+    <div class="buttons" @click=upload>上传数据</div>
+    <div class="buttons" @click="back">返回主页面</div>
+  </div>
+</div>
+<div id="hint">
+  <h1>玩法说明</h1>
+
+</div>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+<script src="./js/pacman.js"></script>
+</body>
+</html>

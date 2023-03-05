@@ -19,15 +19,19 @@
             <HR>
             <div class="button" @click="scrollToRank">Rank</div>
             <HR>
-            <div id="blank"></div>
+            <div class="blank"></div>
             <div>
                 <div v-for="col in cols" class="board-row">
                     <div v-for="row in rows" class="board-block"
                          @click.left="clickLeft(col, row)">
-
+                            <div class="number">{{numbers[col][row]}}</div>
                     </div>
                 </div>
             </div>
+            <div class="blank"></div>
+            <HR>
+            <div class="button" @click="recover">还原</div>
+            <div class="button" @click="disorder">打乱</div>
         </div>
     </div>
     <div class="header">
@@ -54,7 +58,12 @@
             <p>Profile</p>
             <div id="text">
                 <span class="iconfont icon-youxijingji">Vue小游戏</span>
-                <span>Snake-贪吃蛇 Tetris-俄罗斯方块 Sweep-扫雷</span>
+                <div class="blank"></div>
+                <span>Snake-贪吃蛇</span>
+                <span>Tetris-俄罗斯方块</span>
+                <span>Sweep-扫雷</span>
+                <span>Sudoku-数独</span>
+                <span>PACMAN-吃豆人</span>
 
                 <p>点击下图即可跳转游玩</p>
             </div>
@@ -80,9 +89,9 @@
                     <img src="./img/sudoku.png" alt="">
                     <div>Snake</div>
                 </li>
-                <li id="tetris2" @click="gotetris">
-<!--                    <img src="./img/tetris.png" alt="">-->
-<!--                    <div>Tetris</div>-->
+                <li id="pacman" @click="gopacman">
+                    <img src="./img/tetris.png" alt="">
+                    <div>Tetris</div>
                 </li>
                 <li id="sweep2" @click="gosweep">
 <!--                    <img src="./img/sweep.png" alt="">-->
