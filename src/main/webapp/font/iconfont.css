@@ -1,16 +1,80 @@
 @font-face {
   font-family: "iconfont"; /* Project id 3648064 */
-  src: url('iconfont.woff2?t=1663645567416') format('woff2'),
-       url('iconfont.woff?t=1663645567416') format('woff'),
-       url('iconfont.ttf?t=1663645567416') format('truetype');
+  src: url('iconfont.woff2?t=1678022968049') format('woff2'),
+       url('iconfont.woff?t=1678022968049') format('woff'),
+       url('iconfont.ttf?t=1678022968049') format('truetype');
 }
 
 .iconfont {
   font-family: "iconfont" !important;
-  font-size: 40px;
+  font-size: 26px;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-chidouren:before {
+  content: "\e633";
+}
+
+.icon-u36:before {
+  content: "\e600";
+}
+
+.icon-u361:before {
+  content: "\e601";
+}
+
+.icon-chidouren1:before {
+  content: "\e602";
+}
+
+.icon-chidouren11:before {
+  content: "\e603";
+}
+
+.icon-chidouren12:before {
+  content: "\e604";
+}
+
+.icon-chidouren13:before {
+  content: "\e605";
+}
+
+.icon-chidouren2:before {
+  content: "\e606";
+}
+
+.icon-chidouren21:before {
+  content: "\e607";
+}
+
+.icon-chidouren22:before {
+  content: "\e608";
+}
+
+.icon-chidouren23:before {
+  content: "\e609";
+}
+
+.icon-chidouren1-copy:before {
+  content: "\e60a";
+}
+
+.icon-chidouren24:before {
+  content: "\e60b";
+}
+
+.icon-u362:before {
+  content: "\e60c";
+}
+
+.icon-u363:before {
+  content: "\e60d";
+}
+
+.icon-u364:before {
+  content: "\e60e";
 }
 
 .icon-Vue:before {
@@ -23,9 +87,11 @@
 
 .icon-right:before {
   content: "\e620";
+  font-size: 40px;
 }
 
 .icon-left:before {
   content: "\e621";
+  font-size: 40px;
 }
 

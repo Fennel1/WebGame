@@ -10,16 +10,15 @@ var header = new Vue({
     created: function () {
         setInterval(this.timer, 1000);
 //        axios.post('http://localhost:8080/WebGame/main')
-        axios.post('http://143.198.146.14/WebGame/main')
-        .then(function (response) {
-            var resp = response.data;
-            console.log(resp);
-            document.getElementById('uid').innerHTML = 'uid:\t'+resp['uid'];
-            document.getElementById('name').innerHTML = 'name:\t'+resp['name'];
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+//        .then(function (response) {
+//            var resp = response.data;
+//            console.log(resp);
+//            document.getElementById('uid').innerHTML = 'uid:\t'+resp['uid'];
+//            document.getElementById('name').innerHTML = 'name:\t'+resp['name'];
+//        })
+//        .catch(function (error) {
+//            console.log(error);
+//        });
     },
     methods: {
         timer: function () {
@@ -95,18 +94,17 @@ var sweep = new Vue({
         this.timeStart();
         var _this = this;
 //        axios.post('http://localhost:8080/WebGame/sweepSession')
-        axios.post('http://143.198.146.14/WebGame/sweepSession')
-        .then(function (response) {
-            var resp = response.data;
-            console.log(resp);
-            let s = resp['score'] % 60;
-            let m = parseInt(resp['score'] / 60) % 60;
-            let h = parseInt(resp['score'] / 3600);
-            _this.top_time = h.toString()+':'+m.toString()+':'+s.toString();
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+//        .then(function (response) {
+//            var resp = response.data;
+//            console.log(resp);
+//            let s = resp['score'] % 60;
+//            let m = parseInt(resp['score'] / 60) % 60;
+//            let h = parseInt(resp['score'] / 3600);
+//            _this.top_time = h.toString()+':'+m.toString()+':'+s.toString();
+//        })
+//        .catch(function (error) {
+//            console.log(error);
+//        });
     },
     methods: {
         upload () {
@@ -121,14 +119,13 @@ var sweep = new Vue({
 //            console.log(h,m,s,v)
             params.append('score', v);
 //            axios.post('http://localhost:8080/WebGame/sweepUpload', params)
-            axios.post('http://143.198.146.14/WebGame/sweepUpload', params)
-            .then(function (response) {
-                var resp = response.data;
-                console.log(resp);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+//            .then(function (response) {
+//                var resp = response.data;
+//                console.log(resp);
+//            })
+//            .catch(function (error) {
+//                console.log(error);
+//            });
         },
         resize() {
             var bar = document.querySelector('.bar_into');

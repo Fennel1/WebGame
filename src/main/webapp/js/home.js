@@ -9,16 +9,16 @@ var header = new Vue({
     },
     created: function () {//这里是定时器
         setInterval(this.timer, 1000);
-        axios.post('http://localhost:8080/WebGame/main')
-        .then(function (response) {
-            var resp = response.data;
-            console.log(resp);
-            document.getElementById('uid').innerHTML = 'uid:\t'+resp['uid'];
-            document.getElementById('name').innerHTML = 'name:\t'+resp['name'];
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+//        axios.post('http://localhost:8080/WebGame/main')
+//        .then(function (response) {
+//            var resp = response.data;
+//            console.log(resp);
+//            document.getElementById('uid').innerHTML = 'uid:\t'+resp['uid'];
+//            document.getElementById('name').innerHTML = 'name:\t'+resp['name'];
+//        })
+//        .catch(function (error) {
+//            console.log(error);
+//        });
     },
     methods: {
         timer: function () {

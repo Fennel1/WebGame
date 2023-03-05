@@ -10,16 +10,15 @@ var header = new Vue({
     created: function () {
         setInterval(this.timer, 1000);
 //        axios.post('http://localhost:8080/WebGame/main')
-        axios.post('http://143.198.146.14/WebGame/main')
-        .then(function (response) {
-            var resp = response.data;
-            console.log(resp);
-            document.getElementById('uid').innerHTML = 'uid:\t'+resp['uid'];
-            document.getElementById('name').innerHTML = 'name:\t'+resp['name'];
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+//        .then(function (response) {
+//            var resp = response.data;
+//            console.log(resp);
+//            document.getElementById('uid').innerHTML = 'uid:\t'+resp['uid'];
+//            document.getElementById('name').innerHTML = 'name:\t'+resp['name'];
+//        })
+//        .catch(function (error) {
+//            console.log(error);
+//        });
     },
     methods: {
         timer: function () {
@@ -433,15 +432,14 @@ var tetris = new Vue({
     created: function () {
         var _this = this;
 //        axios.post('http://localhost:8080/WebGame/tetrisSession')
-        axios.post('http://143.198.146.14/WebGame/tetrisSession')
-        .then(function (response) {
-            var resp = response.data;
-            console.log(resp);
-            document.getElementById('maxscore').innerHTML = resp['score'];
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+//        .then(function (response) {
+//            var resp = response.data;
+//            console.log(resp);
+//            document.getElementById('maxscore').innerHTML = resp['score'];
+//        })
+//        .catch(function (error) {
+//            console.log(error);
+//        });
     },
     methods: {
         upload () {
@@ -449,14 +447,13 @@ var tetris = new Vue({
             var params = new URLSearchParams();
             params.append('score', score);
 //            axios.post('http://localhost:8080/WebGame/tetrisUpload', params)
-            axios.post('http://143.198.146.14/WebGame/tetrisUpload', params)
-            .then(function (response) {
-                var resp = response.data;
-                console.log(resp);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+//            .then(function (response) {
+//                var resp = response.data;
+//                console.log(resp);
+//            })
+//            .catch(function (error) {
+//                console.log(error);
+//            });
         },
         start: function () {
             initTable();

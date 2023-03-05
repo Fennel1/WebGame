@@ -9,16 +9,16 @@ var header = new Vue({
     },
     created: function () {
         setInterval(this.timer, 1000);
-        axios.post('http://localhost:8080/WebGame/main')
-        .then(function (response) {
-            var resp = response.data;
-            console.log(resp);
-            document.getElementById('uid').innerHTML = 'uid:\t'+resp['uid'];
-            document.getElementById('name').innerHTML = 'name:\t'+resp['name'];
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+//        axios.post('http://localhost:8080/WebGame/main')
+//        .then(function (response) {
+//            var resp = response.data;
+//            console.log(resp);
+//            document.getElementById('uid').innerHTML = 'uid:\t'+resp['uid'];
+//            document.getElementById('name').innerHTML = 'name:\t'+resp['name'];
+//        })
+//        .catch(function (error) {
+//            console.log(error);
+//        });
     },
     methods: {
         timer: function () {
@@ -145,6 +145,7 @@ var sudoku = new Vue({
                 this.count++
             }
             this.sudoku[this.pos_x][this.pos_y] = num
+            this.$forceUpdate()
             var keyboard = document.querySelector('#keyboard')
             keyboard.style.visibility = 'hidden'
             if (this.count == 81){
@@ -156,6 +157,7 @@ var sudoku = new Vue({
                 this.count--
             }
             this.sudoku[this.pos_x][this.pos_y] = ''
+            this.$forceUpdate()
             var keyboard = document.querySelector('#keyboard')
             keyboard.style.visibility = 'hidden'
         },
