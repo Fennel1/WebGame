@@ -17,7 +17,6 @@ public interface ScoreMapper {
     List<RankInfo> selectTetrisRank();
     List<RankInfo> selectSweepRank();
     void add(ScoreInfo scoreInfo);
-
     void updateSnakeScore(@Param("uid")int uid, @Param("score")int score);
     void updateTetrisScore(@Param("uid")int uid, @Param("score")int score);
     void updateSweepScore(@Param("uid")int uid, @Param("score")int score);

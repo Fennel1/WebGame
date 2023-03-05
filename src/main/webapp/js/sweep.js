@@ -9,7 +9,8 @@ var header = new Vue({
     },
     created: function () {
         setInterval(this.timer, 1000);
-        axios.post('http://localhost:8080/WebGame/main')
+//        axios.post('http://localhost:8080/WebGame/main')
+        axios.post('http://143.198.146.14/WebGame/main')
         .then(function (response) {
             var resp = response.data;
             console.log(resp);
@@ -73,7 +74,8 @@ var sweep = new Vue({
         this.init();
         this.timeStart();
         var _this = this;
-        axios.post('http://localhost:8080/WebGame/sweepSession')
+//        axios.post('http://localhost:8080/WebGame/sweepSession')
+        axios.post('http://143.198.146.14/WebGame/sweepSession')
         .then(function (response) {
             var resp = response.data;
             console.log(resp);
@@ -98,7 +100,8 @@ var sweep = new Vue({
             var v = h*3600 + m*60 + s;
 //            console.log(h,m,s,v)
             params.append('score', v);
-            axios.post('http://localhost:8080/WebGame/sweepUpload', params)
+//            axios.post('http://localhost:8080/WebGame/sweepUpload', params)
+            axios.post('http://143.198.146.14/WebGame/sweepUpload', params)
             .then(function (response) {
                 var resp = response.data;
                 console.log(resp);

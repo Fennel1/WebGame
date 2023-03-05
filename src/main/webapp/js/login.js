@@ -22,7 +22,8 @@ var box = new Vue({
         visitorlogin: function(){
             var params = new URLSearchParams();
             params.append('name', "visitor");
-            axios.post('http://localhost:8080/WebGame/visitor', params)
+//            axios.post('http://localhost:8080/WebGame/visitor', params)
+            axios.post('http://143.198.146.14/WebGame/visitor', params)
             .then(function (response) {
                 var resp = response.data;
                 console.log(resp)
@@ -39,7 +40,8 @@ var box = new Vue({
             var params = new URLSearchParams();
             params.append('name', name);
             params.append('password', password);
-            axios.post('http://localhost:8080/WebGame/login', params)
+//            axios.post('http://localhost:8080/WebGame/login', params)
+            axios.post('http://143.198.146.14/WebGame/login', params)
             .then(function (response) {
                 var resp = response.data;
                 console.log(resp)
@@ -67,7 +69,8 @@ var box = new Vue({
             params.append('name', name);
             params.append('password', password);
             params.append('repassword', repassword);
-            axios.post('http://localhost:8080/WebGame/register', params)
+//            axios.post('http://localhost:8080/WebGame/register', params)
+            axios.post('http://143.198.146.14/WebGame/register', params)
             .then(function (response) {
                 var resp = response.data;
                 console.log(resp);

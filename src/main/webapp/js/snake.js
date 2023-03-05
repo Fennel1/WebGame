@@ -10,7 +10,8 @@ var header = new Vue({
     },
     created: function () {
         setInterval(this.timers, 1000);
-        axios.post('http://localhost:8080/WebGame/main')
+//        axios.post('http://localhost:8080/WebGame/main')
+        axios.post('http://143.198.146.14/WebGame/main')
         .then(function (response) {
             var resp = response.data;
             console.log(resp);
@@ -83,7 +84,8 @@ var snake = new Vue({
     },
     created: function () {
         var _this = this;
-        axios.post('http://localhost:8080/WebGame/snakeSession')
+//        axios.post('http://localhost:8080/WebGame/snakeSession')
+        axios.post('http://143.198.146.14/WebGame/snakeSession')
         .then(function (response) {
             var resp = response.data;
             console.log(resp);
@@ -98,7 +100,8 @@ var snake = new Vue({
             var _this = this;
             var params = new URLSearchParams();
             params.append('score', this.topScore);
-            axios.post('http://localhost:8080/WebGame/snakeUpload', params)
+//            axios.post('http://localhost:8080/WebGame/snakeUpload', params)
+            axios.post('http://143.198.146.14/WebGame/snakeUpload', params)
             .then(function (response) {
                 var resp = response.data;
                 console.log(resp);

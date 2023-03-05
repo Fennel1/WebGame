@@ -66,7 +66,8 @@ var header = new Vue({
     },
     created: function () {//这里是定时器
         setInterval(this.timer, 1000);
-        axios.post('http://localhost:8080/WebGame/main')
+//        axios.post('http://localhost:8080/WebGame/main')
+        axios.post('http://143.198.146.14/WebGame/main')
         .then(function (response) {
             var resp = response.data;
             console.log(resp);
@@ -132,7 +133,8 @@ var rank = new Vue({
     },
     created: function () {
         var _this = this;
-        axios.post('http://localhost:8080/WebGame/rank')
+//        axios.post('http://localhost:8080/WebGame/rank')
+        axios.post('http://143.198.146.14/WebGame/rank')
         .then(function (response) {
             var resp = response.data;
             console.log(resp);

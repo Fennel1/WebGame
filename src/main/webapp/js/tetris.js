@@ -9,7 +9,8 @@ var header = new Vue({
     },
     created: function () {
         setInterval(this.timer, 1000);
-        axios.post('http://localhost:8080/WebGame/main')
+//        axios.post('http://localhost:8080/WebGame/main')
+        axios.post('http://143.198.146.14/WebGame/main')
         .then(function (response) {
             var resp = response.data;
             console.log(resp);
@@ -431,7 +432,8 @@ var tetris = new Vue({
     },
     created: function () {
         var _this = this;
-        axios.post('http://localhost:8080/WebGame/tetrisSession')
+//        axios.post('http://localhost:8080/WebGame/tetrisSession')
+        axios.post('http://143.198.146.14/WebGame/tetrisSession')
         .then(function (response) {
             var resp = response.data;
             console.log(resp);
@@ -446,7 +448,8 @@ var tetris = new Vue({
             var _this = this;
             var params = new URLSearchParams();
             params.append('score', score);
-            axios.post('http://localhost:8080/WebGame/tetrisUpload', params)
+//            axios.post('http://localhost:8080/WebGame/tetrisUpload', params)
+            axios.post('http://143.198.146.14/WebGame/tetrisUpload', params)
             .then(function (response) {
                 var resp = response.data;
                 console.log(resp);
