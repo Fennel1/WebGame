@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<head>
+    <title>index</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="./css/home.css" />
+    <link rel="stylesheet" href="./font/iconfont.css">
+</head>
+<body background="./img/cool-background.png" style="background-size:100%;background-attachment: fixed;" unselectable="on" onselectstart="return false;" style="-moz-user-select:none;">
+<div class="header">
+    <div class="time">{{time}}</div>
+    <div class="content"></div>
+    <div class="head">
+        <img :class="{photo:showPhoto, photohover:showPhotoHover}"
+             @mouseenter="show" @mouseleave="hide"
+             src="./img/bg1.png" alt="">
+    </div>
+    <transition name="profilefade">
+        <div class="profile" v-show="showPhotoHover" @mouseenter="show" @mouseleave="hide">
+            <div id="uid"></div>
+            <div id="name"></div>
+            <HR>
+            <div id="logout" @click="logout">注销账号</div>
+            <div id="homepage" @click="homepage">返回</div>
+        </div>
+    </transition>
+</div>
+<div id="block"></div>
+<div id="box">
+    <div id="sidebar">
+
+    </div>
+    <div id="calender">
+
+    </div>
+    <div id="record">
+
+    </div>
+</div>
+
+<div class="footer" ></div>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+<script src="./js/home.js"></script>
+</body>
+</html>

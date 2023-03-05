@@ -69,6 +69,26 @@ var sweep = new Vue({
         top_time: '00:00:00',
         allTrue: true,
         block: "⁣⁣⁣⁣　",
+        difficulty: '简单',
+    },
+    directives: {
+        resize: {
+            bind(el, binding) {
+                let width = '', height = '';
+                function isReize() {
+                    const style = document.defaultView.getComputedStyle(el);
+                    if (width !== style.width || height !== style.height) {
+                        binding.value();
+                    }
+                    width = style.width;
+                    height = style.height;
+                }
+                el.__vueSetInterval__ = setInterval(isReize, 300);
+            },
+            unbind(el) {
+                clearInterval(el.__vueSetInterval__);
+            }
+        }
     },
     created() {
         this.init();
@@ -109,6 +129,25 @@ var sweep = new Vue({
             .catch(function (error) {
                 console.log(error);
             });
+        },
+        resize() {
+            var bar = document.querySelector('.bar_into');
+            var len = parseInt(bar["style"]["width"]);
+            if (len){
+//                console.log(len);
+                if (len > 140){
+                    this.difficulty = '困难';
+                    this.mineNum = 120
+                }
+                else if (len > 70){
+                    this.difficulty = '普通';
+                    this.mineNum = 80;
+                }
+                else{
+                    this.difficulty = '简单';
+                    this.mineNum = 50;
+                }
+            }
         },
         timeStart() {
             this.time = setInterval(this.timer, 50);
@@ -272,3 +311,42 @@ var sweep = new Vue({
         },
     },
 })
+
+var eBarWrap = document.getElementById('wrap');
+var eBarCon = eBarWrap.getElementsByClassName('bar_container')[0];
+var eBarInto = eBarWrap.getElementsByClassName('bar_into')[0];
+var eBarDrag = eBarWrap.getElementsByClassName('bar_drag')[0];
+
+var nMax = eBarCon.offsetWidth - eBarDrag.offsetWidth;
+eBarDrag.addEventListener('mousedown', function (event) {
+    var nInitX = event.clientX;
+    var nInitLeft = this.offsetLeft;
+    document.onmousemove = event => {
+        event.preventDefault();
+        let nX = event.clientX - nInitX + nInitLeft;
+        if (nX >= nMax) {
+            nX = nMax;
+        }
+        if (nX <= 0) {
+            nX = 0;
+        }
+        this.style.left = nX + 'px';
+        eBarInto.style.width = nX + this.offsetWidth / 2 + 'px';
+    };
+    document.onmouseup = function (event) {
+        document.onmousemove = null;
+        document.onmouseup = null;
+    }
+});
+
+eBarCon.addEventListener('click', function (event) {
+    var nLeft = this.offsetLeft;
+    var eParent = this.offsetParent;
+    while (eParent) {
+        nLeft += eParent.offsetLeft;
+        eParent = eParent.offsetParent;
+    }
+    var nX = event.clientX - nLeft;
+    eBarDrag.style.left = nX + 'px';
+    eBarInto.style.width = nX + eBarDrag.offsetWidth / 2 + 'px';
+});
