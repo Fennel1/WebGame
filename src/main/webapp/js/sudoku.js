@@ -164,6 +164,8 @@ var sudoku = new Vue({
         clickLeft(x, y){
 //            console.log(x, y)
             if (this.fix[x][y]) {
+                var keyboard = document.querySelector('#keyboard')
+                keyboard.style.visibility = 'hidden'
                 return
             }
             this.pos_x = x
