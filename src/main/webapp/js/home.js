@@ -48,3 +48,44 @@ var header = new Vue({
     }
 })
 
+var box = new Vue({
+    el: "#box",
+    data: {
+        cols: [],
+        rows: [],
+        isShow: [], //7x53
+        msg: "",
+        nowDay: null,
+    },
+    created: function () {
+        for (let i=0; i<53; i++)    this.rows[i] = i;
+        for (let i=0; i<7; i++){
+            this.cols[i] = i;
+            this.isShow[i] = [];
+        }
+        this.nowDay = new Date();
+        for (let i=this.nowDay.getDay()+1; i<7; i++){
+            this.isShow[i][52] = -1;
+        }
+        for (let i=0; i<this.nowDay.getDay(); i++){
+            this.isShow[i][0] = -1;
+        }
+        let num = 364;
+        for (let i=0; i<53; i++){
+            for (let j=0; j<7; j++){
+                if (this.isShow[j][i] != -1){
+                    this.isShow[j][i] = num--;
+                }
+            }
+        }
+    },
+    methods: {
+        onEnterTd(col, row) {
+            var d = new Date(this.nowDay - 1000 * 60 * 60 * 24 * (this.isShow[col][row]));
+            this.msg = d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
+        },
+        onLeaveTd(col, row) {
+            this.msg = "";
+        }
+    }
+})

@@ -69,6 +69,8 @@ var sweep = new Vue({
         allTrue: true,
         block: "⁣⁣⁣⁣　",
         difficulty: '简单',
+        isInit: false,
+        idx: 0,
     },
     directives: {
         resize: {
@@ -200,6 +202,7 @@ var sweep = new Vue({
             for (var i=0; i<420; i++){
                 this.latticeArr[i].mineNum = this.getMineNum(i);
             }
+            isInit = true;
         },
         reset: function () {
             clearInterval(this.time);
@@ -216,6 +219,10 @@ var sweep = new Vue({
         getMinePosition() {
             for (var n = 0; n < this.mineNum; n++) {
                 const random = Math.floor(Math.random() * 420)
+                if (Math.abs(this.idx-random)<=1 || (Math.abs(this.idx-random)<=22 && Math.abs(this.idx-random)>=0)){
+                    continue;
+                    n--;
+                }
                 if (this.mineArr.indexOf(random) === -1) {
                     this.mineArr.push(random);
                 } else {
@@ -245,6 +252,10 @@ var sweep = new Vue({
             return num;
         },
         clickLeft(index){
+            this.idx = index;
+            if (this.isInit == false){
+                this.init();
+            }
             if (!this.latticeArr[index].isMark){
                 if (this.latticeArr[index].mineNum) {
                     if (!this.latticeArr[index].isOpen && !this.latticeArr[index].isMark) {

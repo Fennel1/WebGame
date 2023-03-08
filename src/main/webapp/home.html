@@ -30,7 +30,16 @@
 
     </div>
     <div id="calender">
-
+        <div id="calender_stats"></div>
+        <div id="calender_main">
+            <div v-for="col in cols" class="calender_row">
+                <div v-for="row in rows" class="calender_block" v-bind:title="msg"
+                     @mouseenter="onEnterTd(col, row)">
+                    <div :class="{calender_content:isShow[col][row]!=-1}"></div>
+                </div>
+            </div>
+        </div>
+        <div id="calender_month"></div>
     </div>
     <div id="record">
 
