@@ -207,12 +207,14 @@ var sweep = new Vue({
         },
         reset: function () {
             clearInterval(this.time);
+            this.hour = 0;
             this.minute = 0;
             this.ms = 0;
             this.second = 0;
             this.cnt_time = '00:00:00';
             this.timeStart();
             this.init();
+            this.isInit = false;
         },
         back() {
             window.location.href = "main.html";
