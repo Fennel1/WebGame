@@ -93,6 +93,7 @@ var sweep = new Vue({
     },
     created() {
         this.init();
+        this.isInit = false;
         this.timeStart();
         var _this = this;
 //        axios.post('http://localhost:8080/WebGame/sweepSession')
@@ -202,7 +203,7 @@ var sweep = new Vue({
             for (var i=0; i<420; i++){
                 this.latticeArr[i].mineNum = this.getMineNum(i);
             }
-            isInit = true;
+            this.isInit = true;
         },
         reset: function () {
             clearInterval(this.time);
