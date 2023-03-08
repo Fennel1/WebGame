@@ -5,8 +5,8 @@ var sidebar = new Vue({
         cols: [0, 1, 2, 3],
         rows: [0, 1, 2, 3],
         numbers: [],
-        pos_x: 0,
-        pos_y: 0,
+        pos_x: 15,
+        pos_y: 15,
     },
     created: function () {
         for (let i=0; i<4; i++){
@@ -46,38 +46,9 @@ var sidebar = new Vue({
                 this.$forceUpdate()
             }
         },
-        shuffleSelf(array, size) {
-            var index = -1,
-                length = array.length,
-                lastIndex = length - 1;
-
-            size = size === undefined ? length : size;
-            while (++index < size) {
-                // var rand = baseRandom(index, lastIndex),
-                var rand = index + Math.floor( Math.random() * (lastIndex - index + 1))
-                    value = array[rand];
-
-                array[rand] = array[index];
-
-                array[index] = value;
-            }
-            array.length = size;
-            return array;
-        },
         disorder() {
-            var array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
-            array = this.shuffleSelf(array, 16);
-            for (let x=0; x<4; x++){
-                for (let y=0; y<4; y++){
-                    if (array[4*x+y] > 0){
-                        this.numbers[x][y] = array[4*x+y];
-                    }
-                    else{
-                        this.numbers[x][y] = '';
-                        this.pos_x = x;
-                        this.pos_y = y;
-                    }
-                }
+            for (let t=0; t<1000; t++){
+                this.clickLeft(Math.floor(Math.random()*4), Math.floor(Math.random()*4));
             }
             this.$forceUpdate()
         },

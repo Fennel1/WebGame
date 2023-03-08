@@ -172,7 +172,7 @@ body {
 
 #game {
     width: 1200px;
-    height: 800px;
+    height: 900px;
     margin: 50px auto;
 
     /* background-color: pink; */
@@ -189,7 +189,7 @@ body {
 
 #control {
     width: 360px;
-    height: 800px;
+    height: 900px;
     float: right;
 
     background-color: rgba(105, 105, 105, 0.7)
@@ -396,6 +396,10 @@ body {
 .fixNumber {
     font-weight: bold;
     color: #FFF8DC;
+}
+
+.red {
+    color: #FF0000;
 }
 
 #keyboard {

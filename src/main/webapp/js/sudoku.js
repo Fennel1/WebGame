@@ -69,6 +69,16 @@ var sudoku = new Vue({
         pos_x: 0,
         pos_y: 0,
         count: 0,
+        isRed: [[0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0]],
+        checkPoint: [],
     },
     directives: {
         resize: {
@@ -145,6 +155,7 @@ var sudoku = new Vue({
                 this.count++
             }
             this.sudoku[this.pos_x][this.pos_y] = num
+            this.setRed()
             this.$forceUpdate()
             var keyboard = document.querySelector('#keyboard')
             keyboard.style.visibility = 'hidden'
@@ -157,6 +168,7 @@ var sudoku = new Vue({
                 this.count--
             }
             this.sudoku[this.pos_x][this.pos_y] = ''
+            this.setRed()
             this.$forceUpdate()
             var keyboard = document.querySelector('#keyboard')
             keyboard.style.visibility = 'hidden'
@@ -187,6 +199,7 @@ var sudoku = new Vue({
             for (let i = 0; i<9; i++) {
                 this.sudoku[i] = []
                 this.fix[i] = []
+                this.checkPoint[i] = []
             }
             for (let x=0; x<9; x++) {
                 for (let y=0; y<9; y++){
@@ -226,6 +239,11 @@ var sudoku = new Vue({
                 }
             }
             this.digHole()
+            for (let i=0; i<9; i++){
+                for (let j=0; j<9; j++){
+                    this.checkPoint[i][j] = this.sudoku[i][j];
+                }
+            }
 //            console.log(this.sudoku)
 //            console.log(this.fix)
         },
@@ -237,6 +255,16 @@ var sudoku = new Vue({
             this.cnt_time = '00:00:00';
             this.timeStart();
             this.init();
+            this.isRed =
+                [[0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0]];
         },
         random(arr, min, max) {
               if (arr.length === 1) return arr[0]
@@ -356,6 +384,59 @@ var sudoku = new Vue({
             if (this.top_time == '00:00:00') this.top_time = this.cnt_time;
             else if (this.cnt_time < this.top_time) this.top_time = this.cnt_time;
         },
+        setRed(){
+            this.isRed =
+                [[0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0]];
+
+            for (let i=0; i<9; i++){
+                if (this.pos_y == i)    continue;
+                if (this.sudoku[this.pos_x][i] == this.sudoku[this.pos_x][this.pos_y]){
+                    this.isRed[this.pos_x][i] = 1;
+                    this.isRed[this.pos_x][this.pos_y] = 1;
+                }
+            }
+            for (let i=0; i<9; i++){
+                if (this.pos_x == i)    continue;
+                if (this.sudoku[i][this.pos_y] == this.sudoku[this.pos_x][this.pos_y]){
+                    this.isRed[i][this.pos_y] = 1;
+                    this.isRed[this.pos_x][this.pos_y] = 1;
+                }
+            }
+            var tmp_x = parseInt(this.pos_x/3);
+            var tmp_y = parseInt(this.pos_y/3);
+            for (let i=0; i<3; i++){
+                for (let j=0; j<3; j++){
+                    if (tmp_x*3+i==this.pos_x && tmp_y*3+j==this.pos_y) continue;
+                    if (this.sudoku[tmp_x*3+i][tmp_y*3+j] == this.sudoku[this.pos_x][this.pos_y]){
+                        this.isRed[tmp_x*3+i][tmp_y*3+j] = 1;
+                        this.isRed[this.pos_x][this.pos_y] = 1;
+                    }
+                }
+            }
+        },
+        save() {
+            for (let i=0; i<9; i++){
+                for (let j=0; j<9; j++){
+                    this.checkPoint[i][j] = this.sudoku[i][j];
+                }
+            }
+        },
+        load() {
+            for (let i=0; i<9; i++){
+                for (let j=0; j<9; j++){
+                    this.sudoku[i][j] = this.checkPoint[i][j];
+                }
+            }
+            this.$forceUpdate();
+        }
     },
 })
 

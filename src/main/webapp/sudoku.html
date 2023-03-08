@@ -44,7 +44,7 @@
         <div v-for="col in cols" class="board-row">
           <div v-for="row in rows" class="board-block"
                @click.left="clickLeft(big_col*3+col, big_row*3+row)">
-                <div id="number" :class="{fixNumber:fix[big_col*3+col][big_row*3+row]}">{{sudoku[big_col*3+col][big_row*3+row]}}</div>
+                <div id="number" :class="{fixNumber:fix[big_col*3+col][big_row*3+row], red:isRed[big_col*3+col][big_row*3+row]}">{{sudoku[big_col*3+col][big_row*3+row]}}</div>
           </div>
         </div>
       </div>
@@ -53,8 +53,9 @@
   <div id="control">
     <div class="buttons" @click="reset">重置游戏</div>
     <HR>
-    <p>已填写区域</p>
-    <div class="score">{{count}}</div>
+    <p>Check Point</p>
+    <div class="buttons" @click="save">保存</div>
+    <div class="buttons" @click="load">加载</div>
     <p>调节难度</p>
     <div id="diffcult">
       <div class="bar_wrap" id="wrap">
