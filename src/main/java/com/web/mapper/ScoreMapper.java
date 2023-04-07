@@ -4,6 +4,7 @@ import com.web.pojo.RankInfo;
 import com.web.pojo.ScoreInfo;
 import org.apache.ibatis.annotations.Param;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 public interface ScoreMapper {
@@ -16,8 +17,6 @@ public interface ScoreMapper {
     List<RankInfo> selectSnakeRank();
     List<RankInfo> selectTetrisRank();
     List<RankInfo> selectSweepRank();
-    void add(ScoreInfo scoreInfo);
-    void updateSnakeScore(@Param("uid")int uid, @Param("score")int score);
-    void updateTetrisScore(@Param("uid")int uid, @Param("score")int score);
-    void updateSweepScore(@Param("uid")int uid, @Param("score")int score);
+
+    void add(int uid, String name, int difficulty, int score, Timestamp timeStamp);
 }

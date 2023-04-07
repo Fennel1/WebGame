@@ -8,24 +8,6 @@ body {
     background-color: #f3f5f7;
 }
 
-.button {
-    width: 80%;
-    height: 50px;
-    margin: 0 auto;
-    /* padding-top: 50px; */
-    /* padding-left: 80px; */
-
-    font-size: 30px;
-    text-align: center;
-    line-height: 50px;
-
-    cursor: pointer;
-}
-
-.button:hover {
-    background-color: rgba(255,165,0,0.4);
-}
-
 .header {
     width: 100%;
     height: 50px;
@@ -238,10 +220,16 @@ body {
     width: 100%;
     height: 50px;
 
-    background-color: black;
+    font-size: 18px;
+    text-align: center;
+}
+
+#calender_stats div{
+    margin-top: 9px;
 }
 
 #calender_main {
+    margin-top: 20px;
     margin-left: 35px;
     width: 100%;
     height: 120px;
@@ -278,4 +266,86 @@ body {
     height: 30px;
 
     background-color: black;
+}
+
+.button {
+    position: relative;
+    left: 50%;
+
+
+    background: rgba(138, 42, 226, 0.8);
+    color: aliceblue;
+    width: 120px;
+    height: 30px;
+
+    font-size: 16px;
+    text-align: center;
+    line-height: 30px;
+
+    transform: translate(-50%, -50%);
+    border-radius: 15px;
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    cursor: pointer;
+}
+
+#selectBar {
+    width: 100%;
+    height: 40px;
+}
+
+#sortTime, #sortDifficulty, #selectGame {
+    float: left;
+    width: 30%;
+    height: 40px;
+
+    list-style: none;
+    background-color: rgba(79, 79, 79, 0.8);
+
+    overflow: hidden;
+}
+
+#sortTime {
+    margin-left: 30px;
+
+    font-size: 18px;
+    text-align: center;
+}
+
+#sortDifficulty {
+    margin-left: 10px;
+
+    font-size: 18px;
+    text-align: center;
+}
+
+#selectGame {
+    margin-left: 10px;
+}
+
+.select{
+    width: 100%;
+    height: 40px;
+
+    font-size: 18px;
+    text-align: center;
+
+    list-style: none;
+    background-color: rgba(79, 79, 79, 0.8);
+
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.sideBarDiv {
+    margin-top: 10px;
+    font-size: 18px;
+    text-align: center;
+}
+
+.sideBarBlock {
+    margin-top: 20px;
+    height: 20px;
 }

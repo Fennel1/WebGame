@@ -6,15 +6,15 @@
 <mapper namespace="com.web.mapper.UserMapper">
     <select id="selectAll" resultType="com.web.pojo.UserInfo">
         select *
-        from userinfo;
+        from user;
     </select>
     <select id="selectByName" resultType="com.web.pojo.UserInfo">
         select *
-        from userinfo
+        from user
         where name = #{name};
     </select>
     <insert id="add">
-        INSERT INTO userinfo (name, password)
+        INSERT INTO user (name, password)
         VALUES (#{name}, #{password});
     </insert>
 </mapper>

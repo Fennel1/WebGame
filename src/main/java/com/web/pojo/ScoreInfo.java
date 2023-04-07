@@ -1,11 +1,14 @@
 package com.web.pojo;
 
+import java.security.Timestamp;
+
 public class ScoreInfo {
     private int uid;
-    private int score_snake;
-    private int score_tetris;
-    private int score_sweep;
     private String name;
+    private int difficulty;
+    private int score;
+
+    private Timestamp date;
 
     public int getUid() {
         return uid;
@@ -16,27 +19,15 @@ public class ScoreInfo {
     }
 
     public int getScore_snake() {
-        return score_snake;
-    }
-
-    public void setScore_snake(int score_snake) {
-        this.score_snake = score_snake;
+        return score;
     }
 
     public int getScore_tetris() {
-        return score_tetris;
-    }
-
-    public void setScore_tetris(int score_tetris) {
-        this.score_tetris = score_tetris;
+        return score;
     }
 
     public int getScore_sweep() {
-        return score_sweep;
-    }
-
-    public void setScore_sweep(int score_sweep) {
-        this.score_sweep = score_sweep;
+        return score;
     }
 
     public String getName() {
@@ -51,9 +42,8 @@ public class ScoreInfo {
     public String toString() {
         return "ScoreInfo{" +
                 "uid=" + uid +
-                ", score_snake=" + score_snake +
-                ", score_tetris=" + score_tetris +
-                ", score_sweep=" + score_sweep +
+                ", score=" + score +
+                ", difficulty=" + difficulty +
                 ", name='" + name + '\'' +
                 '}';
     }

@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Timestamp;
 
 @WebServlet(urlPatterns = "/snakeUpload")
 public class SnakeUpload extends HttpServlet {
@@ -30,10 +31,12 @@ public class SnakeUpload extends HttpServlet {
 //        super.doPost(req, resp);
         System.out.println("snakeUpload");
         int score = Integer.parseInt(req.getParameter("score"));
+        int difficulty = Integer.parseInt(req.getParameter("difficulty"));
         System.out.println(score);
 
         HttpSession session = req.getSession();
         int uid = (Integer) session.getAttribute("uid");
+        String name = (String) session.getAttribute("name");
 
         String resource = "mybatis-config.xml";
         InputStream inputStream = Resources.getResourceAsStream(resource);
@@ -41,14 +44,8 @@ public class SnakeUpload extends HttpServlet {
 
         SqlSession sqlSession = sqlSessionFactory.openSession();
         ScoreMapper scoreMapper = sqlSession.getMapper(ScoreMapper.class);
-        RankInfo rankInfo = scoreMapper.selectSnakeByUid(uid);
-        if (score > rankInfo.getScore()){
-            scoreMapper.updateSnakeScore(uid, score);
-            sqlSession.commit();
-            resp.getWriter().write("true");
-        }
-        else{
-            resp.getWriter().write("false");
-        }
+        Timestamp timeStamp = new Timestamp(System.currentTimeMillis());
+        scoreMapper.add(uid, name, difficulty, score, timeStamp);
+        sqlSession.commit();
     }
 }

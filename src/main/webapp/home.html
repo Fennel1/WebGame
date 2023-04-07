@@ -27,10 +27,38 @@
 <div id="block"></div>
 <div id="box">
     <div id="sidebar">
-
+        <div class="sideBarBlock"></div>
+        <div class="sideBarDiv">uid:</div>
+        <div class="sideBarDiv">name:</div>
+        <div class="sideBarBlock"></div>
+        <div class="button">修改密码</div>
+        <div class="button">上传头像</div>
+        <div class="sideBarBlock"></div>
+        <div class="sideBarDiv">Snake Rank</div>
+        <div class="sideBarDiv">difficulty:</div>
+        <div class="sideBarDiv">score:</div>
+        <div class="sideBarDiv">rank:</div>
+        <div class="sideBarBlock"></div>
+        <div class="sideBarDiv">Tetris Rank</div>
+        <div class="sideBarDiv">difficulty:</div>
+        <div class="sideBarDiv">score:</div>
+        <div class="sideBarDiv">rank:</div>
+        <div class="sideBarBlock"></div>
+        <div class="sideBarDiv">Sweep Rank</div>
+        <div class="sideBarDiv">difficulty:</div>
+        <div class="sideBarDiv">score:</div>
+        <div class="sideBarDiv">rank:</div>
+        <div class="sideBarBlock"></div>
+        <div class="sideBarDiv">Sudoku Rank</div>
+        <div class="sideBarDiv">difficulty:</div>
+        <div class="sideBarDiv">score:</div>
+        <div class="sideBarDiv">rank:</div>
     </div>
     <div id="calender">
-        <div id="calender_stats"></div>
+        <div id="calender_stats">
+            <div>最近365天已游玩 天 共游玩 次</div>
+            <div>Snake: 次 Tetris: 次 Sweep: 次 Sudoku: 次 PacMan: 次</div>
+        </div>
         <div id="calender_main">
             <div v-for="col in cols" class="calender_row">
                 <div v-for="row in rows" class="calender_block" v-bind:title="msg"
@@ -39,10 +67,37 @@
                 </div>
             </div>
         </div>
-        <div id="calender_month"></div>
     </div>
     <div id="record">
+        <div id="selectBar">
+            <div id="sortTime">
+                <select name="sortTime" class="select">
+                    <option value="timeDescending">Time Descending</option>
+                    <option value="timeAscending">Time Ascending</option>
+                </select>
+            </div>
+            <div id="sortDifficulty">
+                <select name="sortDifficulty" class="select">
+                    <option value="difficultyDescending">Difficulty Descending</option>
+                    <option value="difficultyAscending">Difficulty Ascending</option>
+                </select>
+            </div>
+            <div id="selectGame">
+                <select name="selectGame" class="select">
+                    <option value="All">All Games</option>
+                    <option value="Snake">Snake</option>
+                    <option value="Tetris">Tetris</option>
+                    <option value="Sweep">Sweep</option>
+                    <option value="Sudoku">Sudoku</option>
+                    <option value="PacMan">PacMan</option>
+                </select>
+            </div>
+        </div>
+        <ul id="recordList">
+            <li class="" v-for="(item,index) in rank_sweep">
 
+            </li>
+        </ul>
     </div>
 </div>
 

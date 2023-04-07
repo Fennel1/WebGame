@@ -70,7 +70,6 @@ public class AxiosRegister extends HttpServlet {
             scoreInfo.setScore_tetris(0);
             scoreInfo.setScore_sweep(36000);
             scoreInfo.setName(user2.getName());
-            scoreMapper.add(scoreInfo);
             sqlSession2.commit();
 
             resp.getWriter().write("true");
