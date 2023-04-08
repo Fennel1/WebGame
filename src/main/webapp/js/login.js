@@ -23,15 +23,15 @@ var box = new Vue({
             var params = new URLSearchParams();
             params.append('name', "visitor");
             window.location.href = "main.html";
-//            axios.post('http://localhost:8080/WebGame/visitor', params)
-//            .then(function (response) {
-//                var resp = response.data;
-//                console.log(resp)
-//                window.location.href = "main.html";
-//            })
-//            .catch(function (error) {
-//                console.log(error);
-//            });
+            axios.post('http://localhost:8080/WebGame/visitor', params)
+            .then(function (response) {
+                var resp = response.data;
+                console.log(resp)
+                window.location.href = "main.html";
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
         },
         login: function() {
             var name = document.getElementById("login_name").value;

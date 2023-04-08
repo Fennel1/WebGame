@@ -9,16 +9,16 @@ var header = new Vue({
     },
     created: function () {
         setInterval(this.timer, 1000);
-//        axios.post('http://localhost:8080/WebGame/main')
-//        .then(function (response) {
-//            var resp = response.data;
-//            console.log(resp);
-//            document.getElementById('uid').innerHTML = 'uid:\t'+resp['uid'];
-//            document.getElementById('name').innerHTML = 'name:\t'+resp['name'];
-//        })
-//        .catch(function (error) {
-//            console.log(error);
-//        });
+        axios.post('http://localhost:8080/WebGame/main')
+        .then(function (response) {
+            var resp = response.data;
+            console.log(resp);
+            document.getElementById('uid').innerHTML = 'uid:\t'+resp['uid'];
+            document.getElementById('name').innerHTML = 'name:\t'+resp['name'];
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
     },
     methods: {
         timer: function () {
@@ -107,6 +107,23 @@ var sudoku = new Vue({
 
     methods: {
         upload () {
+            var _this = this;
+            var params = new URLSearchParams();
+            let arr = this.cnt_time.split(':');
+            let h = parseInt(arr[0]);
+            let m = parseInt(arr[1]);
+            let s = parseInt(arr[2]);
+            var v = h*3600 + m*60 + s;
+            params.append('score', v);
+            params.append('difficulty', this.difficulty);
+            axios.post('http://localhost:8080/WebGame/sudokuUpload', params)
+            .then(function (response) {
+                var resp = response.data;
+                console.log(resp);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
         },
         resize() {
             var bar = document.querySelector('.bar_into');

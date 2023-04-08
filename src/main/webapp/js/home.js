@@ -9,16 +9,16 @@ var header = new Vue({
     },
     created: function () {//这里是定时器
         setInterval(this.timer, 1000);
-//        axios.post('http://localhost:8080/WebGame/main')
-//        .then(function (response) {
-//            var resp = response.data;
-//            console.log(resp);
-//            document.getElementById('uid').innerHTML = 'uid:\t'+resp['uid'];
-//            document.getElementById('name').innerHTML = 'name:\t'+resp['name'];
-//        })
-//        .catch(function (error) {
-//            console.log(error);
-//        });
+        axios.post('http://localhost:8080/WebGame/main')
+        .then(function (response) {
+            var resp = response.data;
+            console.log(resp);
+            document.getElementById('uid').innerHTML = 'uid:\t'+resp['uid'];
+            document.getElementById('name').innerHTML = 'name:\t'+resp['name'];
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
     },
     methods: {
         timer: function () {
@@ -56,6 +56,7 @@ var box = new Vue({
         isShow: [], //7x53
         msg: "",
         nowDay: null,
+        recordList: [],
     },
     created: function () {
         for (let i=0; i<53; i++)    this.rows[i] = i;
@@ -78,6 +79,33 @@ var box = new Vue({
                 }
             }
         }
+        axios.post('http://localhost:8080/WebGame/record')
+        .then(function (response) {
+            var resp = response.data;
+            console.log(resp);
+
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+        axios.post('http://localhost:8080/WebGame/information')
+        .then(function (response) {
+            var resp = response.data;
+            console.log(resp);
+
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+        axios.post('http://localhost:8080/WebGame/calendar')
+        .then(function (response) {
+            var resp = response.data;
+            console.log(resp);
+
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
     },
     methods: {
         onEnterTd(col, row) {

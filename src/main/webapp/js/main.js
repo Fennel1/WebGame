@@ -77,16 +77,16 @@ var header = new Vue({
     },
     created: function () {//这里是定时器
         setInterval(this.timer, 1000);
-//        axios.post('http://localhost:8080/WebGame/main')
-//        .then(function (response) {
-//            var resp = response.data;
-//            console.log(resp);
-//            document.getElementById('uid').innerHTML = 'uid:\t'+resp['uid'];
-//            document.getElementById('name').innerHTML = 'name:\t'+resp['name'];
-//        })
-//        .catch(function (error) {
-//            console.log(error);
-//        });
+        axios.post('http://localhost:8080/WebGame/main')
+        .then(function (response) {
+            var resp = response.data;
+            console.log(resp);
+            document.getElementById('uid').innerHTML = 'uid:\t'+resp['uid'];
+            document.getElementById('name').innerHTML = 'name:\t'+resp['name'];
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
     },
     methods: {
         timer: function () {
@@ -152,16 +152,16 @@ var rank = new Vue({
     },
     created: function () {
         var _this = this;
-//        axios.post('http://localhost:8080/WebGame/rank')
-//        .then(function (response) {
-//            var resp = response.data;
-//            console.log(resp);
-//            _this.rank_snake = resp[0];
-//            _this.rank_tetris = resp[1];
-//            _this.rank_sweep = resp[2];
-//        })
-//        .catch(function (error) {
-//            console.log(error);
-//        });
+        axios.post('http://localhost:8080/WebGame/rank')
+        .then(function (response) {
+            var resp = response.data;
+            console.log(resp);
+            _this.rank_snake = resp[0];
+            _this.rank_tetris = resp[1];
+            _this.rank_sweep = resp[2];
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
     },
 })

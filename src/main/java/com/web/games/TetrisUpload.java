@@ -3,6 +3,7 @@ package com.web.games;
 import com.alibaba.fastjson.JSON;
 import com.web.mapper.ScoreMapper;
 import com.web.pojo.RankInfo;
+import com.web.pojo.ScoreInfo;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Timestamp;
 
 @WebServlet(urlPatterns = "/tetrisUpload")
 public class TetrisUpload extends HttpServlet {
@@ -30,10 +32,12 @@ public class TetrisUpload extends HttpServlet {
 //        super.doPost(req, resp);
         System.out.println("tetrisUpload");
         int score = Integer.parseInt(req.getParameter("score"));
+        int difficulty = Integer.parseInt(req.getParameter("difficulty"));
         System.out.println(score);
 
         HttpSession session = req.getSession();
         int uid = (Integer) session.getAttribute("uid");
+        String name = (String) session.getAttribute("name");
 
         String resource = "mybatis-config.xml";
         InputStream inputStream = Resources.getResourceAsStream(resource);
@@ -41,14 +45,16 @@ public class TetrisUpload extends HttpServlet {
 
         SqlSession sqlSession = sqlSessionFactory.openSession();
         ScoreMapper scoreMapper = sqlSession.getMapper(ScoreMapper.class);
-        RankInfo rankInfo = scoreMapper.selectTetrisByUid(uid);
-        if (score > rankInfo.getScore()){
-            scoreMapper.updateTetrisScore(uid, score);
-            sqlSession.commit();
-            resp.getWriter().write("true");
-        }
-        else{
-            resp.getWriter().write("false");
-        }
+        Timestamp timeStamp = new Timestamp(System.currentTimeMillis());
+        ScoreInfo scoreInfo = new ScoreInfo();
+        scoreInfo.setUid(uid);
+        scoreInfo.setName(name);
+        scoreInfo.setGame("tetris");
+        scoreInfo.setDifficulty(difficulty);
+        scoreInfo.setScore(score);
+        scoreInfo.setTimeStamp(timeStamp);
+        scoreMapper.add(scoreInfo);
+        sqlSession.commit();
+        resp.getWriter().write("true");
     }
 }

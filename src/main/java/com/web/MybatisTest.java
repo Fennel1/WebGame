@@ -47,13 +47,13 @@ public class MybatisTest {
 //        scoreMapper.add(scoreInfo);
 //        sqlSession2.commit();
 
-        String resource = "mybatis-config.xml";
-        InputStream inputStream = Resources.getResourceAsStream(resource);
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-
-        SqlSession sqlSession = sqlSessionFactory.openSession();
-        ScoreMapper scoreMapper = sqlSession.getMapper(ScoreMapper.class);
-        scoreMapper.updateSnakeScore(2, 8);
-        sqlSession.commit();
+//        String resource = "mybatis-config.xml";
+//        InputStream inputStream = Resources.getResourceAsStream(resource);
+//        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+//
+//        SqlSession sqlSession = sqlSessionFactory.openSession();
+//        ScoreMapper scoreMapper = sqlSession.getMapper(ScoreMapper.class);
+//        scoreMapper.updateSnakeScore(2, 8);
+//        sqlSession.commit();
     }
 }

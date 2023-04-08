@@ -105,9 +105,16 @@
                 <li id="rsnake">
                     <div>Snake</div>
                     <ul>
+                        <li class="ranklist">
+                            <p>rk</p>
+                            <span>name</span>
+                            <span>diff</span>
+                            <span>score</span>
+                        </li>
                         <li class="ranklist" v-for="(item,index) in rank_snake">
                             <p>{{index+1}}</p>
                             <span>{{item.name}}</span>
+                            <span>{{item.difficulty}}</span>
                             <span>{{item.score}}</span>
                         </li>
                     </ul>
@@ -115,9 +122,16 @@
                 <li id="rtetris">
                     <div>Tetris</div>
                     <ul>
+                        <li class="ranklist">
+                            <p>rk</p>
+                            <span>name</span>
+                            <span>diff</span>
+                            <span>score</span>
+                        </li>
                         <li class="ranklist" v-for="(item,index) in rank_tetris">
                             <p>{{index+1}}</p>
                             <span>{{item.name}}</span>
+                            <span>{{item.difficulty}}</span>
                             <span>{{item.score}}</span>
                         </li>
                     </ul>
@@ -125,9 +139,16 @@
                 <li id="rsweep">
                     <div>Sweep</div>
                     <ul>
+                        <li class="ranklist">
+                            <p>rk</p>
+                            <span>name</span>
+                            <span>diff</span>
+                            <span>score</span>
+                        </li>
                         <li class="ranklist" v-for="(item,index) in rank_sweep">
                             <p>{{index+1}}</p>
                             <span>{{item.name}}</span>
+                            <span>{{item.difficulty}}</span>
                             <span>{{item.score}}</span>
                         </li>
                     </ul>

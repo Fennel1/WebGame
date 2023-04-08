@@ -9,16 +9,16 @@ var header = new Vue({
     },
     created: function () {
         setInterval(this.timer, 1000);
-//        axios.post('http://localhost:8080/WebGame/main')
-//        .then(function (response) {
-//            var resp = response.data;
-//            console.log(resp);
-//            document.getElementById('uid').innerHTML = 'uid:\t'+resp['uid'];
-//            document.getElementById('name').innerHTML = 'name:\t'+resp['name'];
-//        })
-//        .catch(function (error) {
-//            console.log(error);
-//        });
+        axios.post('http://localhost:8080/WebGame/main')
+        .then(function (response) {
+            var resp = response.data;
+            console.log(resp);
+            document.getElementById('uid').innerHTML = 'uid:\t'+resp['uid'];
+            document.getElementById('name').innerHTML = 'name:\t'+resp['name'];
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
     },
     methods: {
         timer: function () {
@@ -431,29 +431,42 @@ var tetris = new Vue({
     },
     created: function () {
         var _this = this;
-//        axios.post('http://localhost:8080/WebGame/tetrisSession')
-//        .then(function (response) {
-//            var resp = response.data;
-//            console.log(resp);
-//            document.getElementById('maxscore').innerHTML = resp['score'];
-//        })
-//        .catch(function (error) {
-//            console.log(error);
-//        });
+        axios.post('http://localhost:8080/WebGame/tetrisSession')
+        .then(function (response) {
+            var resp = response.data;
+            console.log(resp);
+            var difficulty_str;
+            if (resp['difficulty'] == 1)    difficulty_str = '简单';
+            else if (resp['difficulty'] == 2)   difficulty_str = '中等';
+            else if (resp['difficulty'] == 3)   difficulty_str = '困难';
+            document.getElementById('maxscore').innerHTML = difficulty_str + "--" + resp['score'];
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
     },
     methods: {
         upload () {
             var _this = this;
             var params = new URLSearchParams();
             params.append('score', score);
-//            axios.post('http://localhost:8080/WebGame/tetrisUpload', params)
-//            .then(function (response) {
-//                var resp = response.data;
-//                console.log(resp);
-//            })
-//            .catch(function (error) {
-//                console.log(error);
-//            });
+            if (this.difficulty == '简单'){
+                params.append('difficulty', 1);
+            }
+            else if (this.difficulty == '普通'){
+                params.append('difficulty', 2);
+            }
+            else{
+                params.append('difficulty', 3);
+            }
+            axios.post('http://localhost:8080/WebGame/tetrisUpload', params)
+            .then(function (response) {
+                var resp = response.data;
+                console.log(resp);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
         },
         start: function () {
             initTable();

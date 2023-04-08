@@ -59,19 +59,6 @@ public class AxiosRegister extends HttpServlet {
             session.setAttribute("uid", user2.getUid());
             session.setAttribute("name", user2.getName());
 
-            InputStream inputStream2 = Resources.getResourceAsStream(resource);
-            SqlSessionFactory sqlSessionFactory2 = new SqlSessionFactoryBuilder().build(inputStream2);
-            SqlSession sqlSession2 = sqlSessionFactory2.openSession();
-            ScoreMapper scoreMapper = sqlSession2.getMapper(ScoreMapper.class);
-            ScoreInfo scoreInfo = new ScoreInfo();
-
-            scoreInfo.setUid(user2.getUid());
-            scoreInfo.setScore_snake(0);
-            scoreInfo.setScore_tetris(0);
-            scoreInfo.setScore_sweep(36000);
-            scoreInfo.setName(user2.getName());
-            sqlSession2.commit();
-
             resp.getWriter().write("true");
         }
         else{

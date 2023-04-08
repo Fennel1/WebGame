@@ -12,46 +12,120 @@
     <select id="selectAll" resultType="com.web.pojo.ScoreInfo">
         select *
         from record
-        limit 16;
+        limit 15;
     </select>
     <select id="selectSnakeRank" resultType="com.web.pojo.RankInfo">
-        select name, score_snake as score
+        select name, score, difficulty
         from record
-        where name != 'visitor'
-        order by score_snake desc
-        limit 16;
+        where name != 'visitor' and game = 'snake'
+        order by difficulty desc, score desc
+        limit 15;
     </select>
     <select id="selectTetrisRank" resultType="com.web.pojo.RankInfo">
-        select name, score_tetris as score
+        select name, score, difficulty
         from record
-        where name != 'visitor'
-        order by score_tetris desc
-        limit 16;
+        where name != 'visitor' and game = 'Tetris'
+        order by difficulty desc, score desc
+        limit 15;
     </select>
     <select id="selectSweepRank" resultType="com.web.pojo.RankInfo">
-        select name, score_sweep as score
+        select name, score, difficulty
         from record
-        where name != 'visitor'
-        order by score_sweep
-        limit 16;
+        where name != 'visitor' and game = 'sweep'
+        order by difficulty desc, score desc
+        limit 15;
     </select>
     <select id="selectSnakeByUid" resultType="com.web.pojo.RankInfo">
-        select name, score_snake as score
+        select name, score, difficulty
         from record
-        where uid = #{uid};
+        where game = 'snake' and uid = #{uid}
+        order by difficulty desc, score desc
+        limit 1;
     </select>
     <select id="selectTetrisByUid" resultType="com.web.pojo.RankInfo">
-        select name, score_tetris as score
+        select name, score, difficulty
         from record
-        where uid = #{uid};
+        where game = 'Tetris' and uid = #{uid}
+        order by difficulty desc, score desc
+        limit 1;
     </select>
     <select id="selectSweepByUid" resultType="com.web.pojo.RankInfo">
-        select name, score_sweep as score
+        select name, score, difficulty
         from record
-        where uid = #{uid};
+        where game = 'sweep' and uid = #{uid}
+        order by difficulty desc, score desc
+        limit 1;
+    </select>
+    <select id="selectSudokuByUid" resultType="com.web.pojo.RankInfo">
+        select name, score, difficulty
+        from record
+        where game = 'sudoku' and uid = #{uid}
+        order by difficulty desc, score desc
+        limit 1;
+    </select>
+    <select id="GetAllRecord" resultType="com.web.pojo.ScoreInfo">
+        select *
+        from record
+        where uid = #{uid}
+        order by difficulty desc, score desc;
+    </select>
+    <select id="GetSnakeRecord" resultType="com.web.pojo.ScoreInfo">
+        select *
+        from record
+        where game = 'snake' and uid = #{uid}
+        order by difficulty desc, score desc;
+    </select>
+    <select id="GetTetrisRecord" resultType="com.web.pojo.ScoreInfo">
+        select *
+        from record
+        where game = 'Tetris' and uid = #{uid}
+        order by difficulty desc, score desc;
+    </select>
+    <select id="GetSweepRecord" resultType="com.web.pojo.ScoreInfo">
+        select *
+        from record
+        where game = 'sweep' and uid = #{uid}
+        order by difficulty desc, score desc;
+    </select>
+    <select id="GetSudokuRecord" resultType="com.web.pojo.ScoreInfo">
+        select *
+        from record
+        where game = 'sudoku' and uid = #{uid}
+        order by difficulty desc, score desc;
+    </select>
+    <select id="GetPacmanRecord" resultType="com.web.pojo.ScoreInfo">
+        select *
+        from record
+        where game = 'pacman' and uid = #{uid}
+        order by difficulty desc, score desc;
+    </select>
+    <select id="GetSnakeCount" resultType="java.lang.Integer">
+        select count(*)
+        from record
+        where game = 'snake' and uid = #{uid};
+    </select>
+    <select id="GetTetrisCount" resultType="java.lang.Integer">
+        select count(*)
+        from record
+        where game = 'Tetris' and uid = #{uid};
+    </select>
+    <select id="GetSweepCount" resultType="java.lang.Integer">
+        select count(*)
+        from record
+        where game = 'sweep' and uid = #{uid};
+    </select>
+    <select id="GetSudokuCount" resultType="java.lang.Integer">
+        select count(*)
+        from record
+        where game = 'sudoku' and uid = #{uid};
+    </select>
+    <select id="GetPacmanCount" resultType="java.lang.Integer">
+        select count(*)
+        from record
+        where game = 'pacman' and uid = #{uid};
     </select>
     <insert id="add">
-        INSERT INTO record (uid, name, difficulty, score, date)
-        VALUES (#{uid}, #{name}, #{difficulty}, #{score}, #{date});
+        INSERT INTO record (uid, name, game, difficulty, score, date)
+        VALUES (#{uid}, #{name}, #{game}, #{difficulty}, #{score}, #{date});
     </insert>
 </mapper>

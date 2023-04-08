@@ -9,16 +9,16 @@ var header = new Vue({
     },
     created: function () {
         setInterval(this.timer, 1000);
-//        axios.post('http://localhost:8080/WebGame/main')
-//        .then(function (response) {
-//            var resp = response.data;
-//            console.log(resp);
-//            document.getElementById('uid').innerHTML = 'uid:\t'+resp['uid'];
-//            document.getElementById('name').innerHTML = 'name:\t'+resp['name'];
-//        })
-//        .catch(function (error) {
-//            console.log(error);
-//        });
+        axios.post('http://localhost:8080/WebGame/main')
+        .then(function (response) {
+            var resp = response.data;
+            console.log(resp);
+            document.getElementById('uid').innerHTML = 'uid:\t'+resp['uid'];
+            document.getElementById('name').innerHTML = 'name:\t'+resp['name'];
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
     },
     methods: {
         timer: function () {
@@ -66,6 +66,7 @@ var sweep = new Vue({
         time: "",
         cnt_time: '00:00:00',
         top_time: '00:00:00',
+        top_difficulty: '简单',
         allTrue: true,
         block: "⁣⁣⁣⁣　",
         difficulty: '简单',
@@ -96,39 +97,57 @@ var sweep = new Vue({
         this.isInit = false;
         this.timeStart();
         var _this = this;
-//        axios.post('http://localhost:8080/WebGame/sweepSession')
-//        .then(function (response) {
-//            var resp = response.data;
-//            console.log(resp);
-//            let s = resp['score'] % 60;
-//            let m = parseInt(resp['score'] / 60) % 60;
-//            let h = parseInt(resp['score'] / 3600);
-//            _this.top_time = h.toString()+':'+m.toString()+':'+s.toString();
-//        })
-//        .catch(function (error) {
-//            console.log(error);
-//        });
+        axios.post('http://localhost:8080/WebGame/sweepSession')
+        .then(function (response) {
+            var resp = response.data;
+            console.log(resp);
+            let s = resp['score'] % 60;
+            let m = parseInt(resp['score'] / 60) % 60;
+            let h = parseInt(resp['score'] / 3600);
+            _this.top_time = h.toString()+':'+m.toString()+':'+s.toString();
+            if (resp['difficulty'] == 1){
+                _this.top_difficulty = '简单';
+            }
+            else if (resp['difficulty'] == 2){
+                _this.top_difficulty = '普通';
+            }
+            else{
+                _this.top_difficulty = '困难';
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
     },
     methods: {
         upload () {
             var _this = this;
             var params = new URLSearchParams();
 //            console.log(this.top_time);
-            let arr = this.top_time.split(':');
+            let arr = this.cnt_time.split(':');
             let h = parseInt(arr[0]);
             let m = parseInt(arr[1]);
             let s = parseInt(arr[2]);
             var v = h*3600 + m*60 + s;
 //            console.log(h,m,s,v)
             params.append('score', v);
-//            axios.post('http://localhost:8080/WebGame/sweepUpload', params)
-//            .then(function (response) {
-//                var resp = response.data;
-//                console.log(resp);
-//            })
-//            .catch(function (error) {
-//                console.log(error);
-//            });
+            if (this.difficulty == '简单'){
+                params.append('difficulty', 1);
+            }
+            else if (this.difficulty == '普通'){
+                params.append('difficulty', 2);
+            }
+            else{
+                params.append('difficulty', 3);
+            }
+            axios.post('http://localhost:8080/WebGame/sweepUpload', params)
+            .then(function (response) {
+                var resp = response.data;
+                console.log(resp);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
         },
         resize() {
             var bar = document.querySelector('.bar_into');

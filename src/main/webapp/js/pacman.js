@@ -9,16 +9,16 @@ var header = new Vue({
     },
     created: function () {
         setInterval(this.timer, 1000);
-//        axios.post('http://localhost:8080/WebGame/main')
-//        .then(function (response) {
-//            var resp = response.data;
-//            console.log(resp);
-//            document.getElementById('uid').innerHTML = 'uid:\t'+resp['uid'];
-//            document.getElementById('name').innerHTML = 'name:\t'+resp['name'];
-//        })
-//        .catch(function (error) {
-//            console.log(error);
-//        });
+        axios.post('http://localhost:8080/WebGame/main')
+        .then(function (response) {
+            var resp = response.data;
+            console.log(resp);
+            document.getElementById('uid').innerHTML = 'uid:\t'+resp['uid'];
+            document.getElementById('name').innerHTML = 'name:\t'+resp['name'];
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
     },
     methods: {
         timer: function () {
@@ -151,6 +151,18 @@ var pacman = new Vue({
 
     methods: {
         upload () {
+        var _this = this;
+        var params = new URLSearchParams();
+        params.append('score', 0);
+        params.append('difficulty', 0);
+        axios.post('http://localhost:8080/WebGame/pacmanUpload', params)
+        .then(function (response) {
+            var resp = response.data;
+            console.log(resp);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
         },
         resize() {
             var bar = document.querySelector('.bar_into');

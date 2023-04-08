@@ -10,16 +10,16 @@ var header = new Vue({
     },
     created: function () {
         setInterval(this.timers, 1000);
-//        axios.post('http://localhost:8080/WebGame/main')
-//        .then(function (response) {
-//            var resp = response.data;
-//            console.log(resp);
-//            document.getElementById('uid').innerHTML = 'uid:\t'+resp['uid'];
-//            document.getElementById('name').innerHTML = 'name:\t'+resp['name'];
-//        })
-//        .catch(function (error) {
-//            console.log(error);
-//        });
+        axios.post('http://localhost:8080/WebGame/main')
+        .then(function (response) {
+            var resp = response.data;
+            console.log(resp);
+            document.getElementById('uid').innerHTML = 'uid:\t'+resp['uid'];
+            document.getElementById('name').innerHTML = 'name:\t'+resp['name'];
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
     },
     methods: {
         timers: function () {
@@ -61,6 +61,7 @@ var snake = new Vue({
         food: null,
         isgame: true,
         difficulty: '简单',
+        top_difficulty: '简单',
     },
     directives: { 
         resize: { 
@@ -83,29 +84,41 @@ var snake = new Vue({
     },
     created: function () {
         var _this = this;
-//        axios.post('http://localhost:8080/WebGame/snakeSession')
-//        .then(function (response) {
-//            var resp = response.data;
-//            console.log(resp);
-//            _this.topScore = resp['score'];
-//        })
-//        .catch(function (error) {
-//            console.log(error);
-//        });
+        axios.post('http://localhost:8080/WebGame/snakeSession')
+        .then(function (response) {
+            var resp = response.data;
+            console.log(resp);
+            _this.topScore = resp['score'];
+            if (resp['difficulty'] == 1)       _this.top_difficulty = '简单';
+            else if (resp['difficulty'] == 2)  _this.top_difficulty = '中等';
+            else if (resp['difficulty'] == 3)   _this.top_difficulty = '困难';
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
     },
     methods: {
         upload() {
             var _this = this;
             var params = new URLSearchParams();
-            params.append('score', this.topScore);
-//            axios.post('http://localhost:8080/WebGame/snakeUpload', params)
-//            .then(function (response) {
-//                var resp = response.data;
-//                console.log(resp);
-//            })
-//            .catch(function (error) {
-//                console.log(error);
-//            });
+            params.append('score', this.score);
+            if (this.difficulty == '简单'){
+                params.append('difficulty', 1);
+            }
+            else if (this.difficulty == '普通'){
+                params.append('difficulty', 2);
+            }
+            else{
+                params.append('difficulty', 3);
+            }
+            axios.post('http://localhost:8080/WebGame/snakeUpload', params)
+            .then(function (response) {
+                var resp = response.data;
+                console.log(resp);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
         },
         resize() {
             var bar = document.querySelector('.bar_into');

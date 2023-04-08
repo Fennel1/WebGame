@@ -19,8 +19,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Timestamp;
 
-@WebServlet(urlPatterns = "/snakeUpload")
-public class SnakeUpload extends HttpServlet {
+@WebServlet(urlPatterns = "/pacmanUpload")
+public class PacmanUpload extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -49,7 +49,7 @@ public class SnakeUpload extends HttpServlet {
         ScoreInfo scoreInfo = new ScoreInfo();
         scoreInfo.setUid(uid);
         scoreInfo.setName(name);
-        scoreInfo.setGame("snake");
+        scoreInfo.setGame("pacman");
         scoreInfo.setDifficulty(difficulty);
         scoreInfo.setScore(score);
         scoreInfo.setTimeStamp(timeStamp);

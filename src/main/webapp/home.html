@@ -29,30 +29,29 @@
     <div id="sidebar">
         <div class="sideBarBlock"></div>
         <div class="sideBarDiv">uid:</div>
+        <div class="sideBarBlock"></div>
         <div class="sideBarDiv">name:</div>
         <div class="sideBarBlock"></div>
+        <div class="sideBarBlock"></div>
         <div class="button">修改密码</div>
+        <div class="sideBarBlock"></div>
         <div class="button">上传头像</div>
         <div class="sideBarBlock"></div>
         <div class="sideBarDiv">Snake Rank</div>
         <div class="sideBarDiv">difficulty:</div>
         <div class="sideBarDiv">score:</div>
-        <div class="sideBarDiv">rank:</div>
         <div class="sideBarBlock"></div>
         <div class="sideBarDiv">Tetris Rank</div>
         <div class="sideBarDiv">difficulty:</div>
         <div class="sideBarDiv">score:</div>
-        <div class="sideBarDiv">rank:</div>
         <div class="sideBarBlock"></div>
         <div class="sideBarDiv">Sweep Rank</div>
         <div class="sideBarDiv">difficulty:</div>
         <div class="sideBarDiv">score:</div>
-        <div class="sideBarDiv">rank:</div>
         <div class="sideBarBlock"></div>
         <div class="sideBarDiv">Sudoku Rank</div>
         <div class="sideBarDiv">difficulty:</div>
         <div class="sideBarDiv">score:</div>
-        <div class="sideBarDiv">rank:</div>
     </div>
     <div id="calender">
         <div id="calender_stats">
@@ -94,7 +93,7 @@
             </div>
         </div>
         <ul id="recordList">
-            <li class="" v-for="(item,index) in rank_sweep">
+            <li class="" v-for="(item,index) in recordList">
 
             </li>
         </ul>
@@ -103,7 +102,6 @@
 
 <div class="footer" ></div>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<!--<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>-->
 <script src="./js/vue.js"></script>
 <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
 <script src="./js/home.js"></script>

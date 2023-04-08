@@ -14,9 +14,23 @@ public interface ScoreMapper {
     RankInfo selectSnakeByUid(int uid);
     RankInfo selectTetrisByUid(int uid);
     RankInfo selectSweepByUid(int uid);
+    RankInfo selectSudokuByUid(int uid);
     List<RankInfo> selectSnakeRank();
     List<RankInfo> selectTetrisRank();
     List<RankInfo> selectSweepRank();
 
-    void add(int uid, String name, int difficulty, int score, Timestamp timeStamp);
+    List<ScoreInfo> GetAllRecord(int uid);
+    List<ScoreInfo> GetSnakeRecord(int uid);
+    List<ScoreInfo> GetTetrisRecord(int uid);
+    List<ScoreInfo> GetSweepRecord(int uid);
+    List<ScoreInfo> GetSudokuRecord(int uid);
+    List<ScoreInfo> GetPacmanRecord(int uid);
+
+    int GetSnakeCount(int uid);
+    int GetTetrisCount(int uid);
+    int GetSweepCount(int uid);
+    int GetSudokuCount(int uid);
+    int GetPacmanCount(int uid);
+
+    void add(ScoreInfo scoreInfo);
 }
