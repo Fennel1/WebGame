@@ -20,6 +20,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 
 @WebServlet(urlPatterns = "/information")
@@ -33,8 +35,10 @@ public class information extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        super.doPost(req, resp);
+        System.out.println("information");
         HttpSession session = req.getSession();
         int uid = (Integer)session.getAttribute("uid");
+        String name = (String)session.getAttribute("name");
 
         String resource = "mybatis-config.xml";
         InputStream inputStream = Resources.getResourceAsStream(resource);
@@ -42,9 +46,21 @@ public class information extends HttpServlet {
 
         SqlSession sqlSession = sqlSessionFactory.openSession();
         ScoreMapper scoreMapper = sqlSession.getMapper(ScoreMapper.class);
-        RankInfo rankInfo = scoreMapper.selectSnakeByUid(uid);
 
-        System.out.println("Session:" + JSON.toJSONString(rankInfo));
-        resp.getWriter().write(JSON.toJSONString(rankInfo));
+        RankInfo snakeRankInfo = scoreMapper.selectSnakeByUid(uid);
+        RankInfo tetrisRankInfo = scoreMapper.selectTetrisByUid(uid);
+        RankInfo sweepRankInfo = scoreMapper.selectSweepByUid(uid);
+        RankInfo sudokuRankInfo = scoreMapper.selectSudokuByUid(uid);
+
+        Map<String,Object> jsonObject = new HashMap<String, Object>();
+        jsonObject.put("uid",uid);
+        jsonObject.put("name",name);
+        jsonObject.put("snake",snakeRankInfo);
+        jsonObject.put("tetris",tetrisRankInfo);
+        jsonObject.put("sweep",sweepRankInfo);
+        jsonObject.put("sudoku",sudokuRankInfo);
+
+        System.out.println("Session:" + JSON.toJSONString(jsonObject));
+        resp.getWriter().write(JSON.toJSONString(jsonObject));
     }
 }

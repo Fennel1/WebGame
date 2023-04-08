@@ -57,6 +57,24 @@ var box = new Vue({
         msg: "",
         nowDay: null,
         recordList: [],
+        dayList: [],
+        dayCount: 0,
+        playCount: 0,
+        snakeCount: 0,
+        tetrisCount: 0,
+        sweepCount: 0,
+        sudokuCount: 0,
+        pacmanCount: 0,
+        uid: 0,
+        name: "",
+        snakeDifficultly: 0,
+        tetrisDifficultly: 0,
+        sweepDifficultly: 0,
+        sudokuDifficultly: 0,
+        snakeScore: 0,
+        tetrisScore: 0,
+        sweepScore: 0,
+        sudokuScore: 0,
     },
     created: function () {
         for (let i=0; i<53; i++)    this.rows[i] = i;
@@ -79,11 +97,12 @@ var box = new Vue({
                 }
             }
         }
+        var _this = this;
         axios.post('http://localhost:8080/WebGame/record')
         .then(function (response) {
             var resp = response.data;
             console.log(resp);
-
+            _this.recordList = resp;
         })
         .catch(function (error) {
             console.log(error);
@@ -92,12 +111,21 @@ var box = new Vue({
         .then(function (response) {
             var resp = response.data;
             console.log(resp);
-
+            _this.uid = resp['uid'];
+            _this.name = resp['name'];
+            _this.snakeDifficultly = resp['snake']['difficulty'];
+            _this.tetrisDifficultly = resp['tetris']['difficulty'];
+            _this.sweepDifficultly = resp['sweep']['difficulty'];
+            _this.sudokuDifficultly = resp['sudoku']['difficulty'];
+            _this.snakeScore = resp['snake']['score'];
+            _this.tetrisScore = resp['tetris']['score'];
+            _this.sweepScore = resp['sweep']['score'];
+            _this.sudokuScore = resp['sudoku']['score'];
         })
         .catch(function (error) {
             console.log(error);
         });
-        axios.post('http://localhost:8080/WebGame/calendar')
+        axios.post('http://localhost:8080/WebGame/calender')
         .then(function (response) {
             var resp = response.data;
             console.log(resp);

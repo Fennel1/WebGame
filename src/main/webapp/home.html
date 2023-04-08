@@ -28,9 +28,9 @@
 <div id="box">
     <div id="sidebar">
         <div class="sideBarBlock"></div>
-        <div class="sideBarDiv">uid:</div>
+        <div class="sideBarDiv">uid:{{uid}}</div>
         <div class="sideBarBlock"></div>
-        <div class="sideBarDiv">name:</div>
+        <div class="sideBarDiv">name:{{name}}</div>
         <div class="sideBarBlock"></div>
         <div class="sideBarBlock"></div>
         <div class="button">修改密码</div>
@@ -38,25 +38,25 @@
         <div class="button">上传头像</div>
         <div class="sideBarBlock"></div>
         <div class="sideBarDiv">Snake Rank</div>
-        <div class="sideBarDiv">difficulty:</div>
-        <div class="sideBarDiv">score:</div>
+        <div class="sideBarDiv">difficulty:{{snakeDifficultly}}</div>
+        <div class="sideBarDiv">score:{{snakeScore}}</div>
         <div class="sideBarBlock"></div>
         <div class="sideBarDiv">Tetris Rank</div>
-        <div class="sideBarDiv">difficulty:</div>
-        <div class="sideBarDiv">score:</div>
+        <div class="sideBarDiv">difficulty:{{tetrisDifficultly}}</div>
+        <div class="sideBarDiv">score:{{tetrisScore}}</div>
         <div class="sideBarBlock"></div>
         <div class="sideBarDiv">Sweep Rank</div>
-        <div class="sideBarDiv">difficulty:</div>
-        <div class="sideBarDiv">score:</div>
+        <div class="sideBarDiv">difficulty:{{sweepDifficultly}}</div>
+        <div class="sideBarDiv">score:{{sweepScore}}</div>
         <div class="sideBarBlock"></div>
         <div class="sideBarDiv">Sudoku Rank</div>
-        <div class="sideBarDiv">difficulty:</div>
-        <div class="sideBarDiv">score:</div>
+        <div class="sideBarDiv">difficulty:{{sudokuDifficultly}}</div>
+        <div class="sideBarDiv">score:{{sudokuScore}}</div>
     </div>
     <div id="calender">
         <div id="calender_stats">
-            <div>最近365天已游玩 天 共游玩 次</div>
-            <div>Snake: 次 Tetris: 次 Sweep: 次 Sudoku: 次 PacMan: 次</div>
+            <div>最近365天已游玩{{dayCount}}天 共游玩{{playCount}}次</div>
+            <div>Snake:{{snakeCount}}次 Tetris:{{tetrisCount}}次 Sweep:{{sweepCount}}次 Sudoku:{{sudokuCount}}次 PacMan:{{pacmanCount}}次</div>
         </div>
         <div id="calender_main">
             <div v-for="col in cols" class="calender_row">
@@ -94,7 +94,11 @@
         </div>
         <ul id="recordList">
             <li class="" v-for="(item,index) in recordList">
-
+                <div>{{index+1}}</div>
+                <div>{{item.game}}</div>
+                <div>{{item.difficulty}}</div>
+                <div>{{item.score}}</div>
+                <div>{{item.date}}</div>
             </li>
         </ul>
     </div>

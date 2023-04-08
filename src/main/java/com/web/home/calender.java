@@ -42,9 +42,7 @@ public class calender extends HttpServlet {
 
         SqlSession sqlSession = sqlSessionFactory.openSession();
         ScoreMapper scoreMapper = sqlSession.getMapper(ScoreMapper.class);
-        RankInfo rankInfo = scoreMapper.selectSnakeByUid(uid);
 
-        System.out.println("Session:" + JSON.toJSONString(rankInfo));
-        resp.getWriter().write(JSON.toJSONString(rankInfo));
+        resp.getWriter().write(JSON.toJSONString(scoreMapper.selectSnakeByUid(uid)));
     }
 }

@@ -140,15 +140,9 @@ var game = new Vue({
 var rank = new Vue({
     el: ".rank",
     data: {
-        rank_snake: [
-
-        ],
-        rank_tetris: [
-
-        ],
-        rank_sweep: [
-
-        ],
+        rank_snake: [],
+        rank_tetris: [],
+        rank_sweep: [],
     },
     created: function () {
         var _this = this;
