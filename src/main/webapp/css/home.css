@@ -188,7 +188,8 @@ body {
     width: 400px;
     height: 1000px;
 
-    background-color: rgba(255,255,255);
+    background-color: rgba(105, 105, 105, 0.8);
+    color: aliceblue;
     border-radius: 20px;
     z-index: 2;
 }
@@ -199,7 +200,9 @@ body {
     width: 870px;
     height: 220px;
 
-    background-color: rgba(255,255,255);
+    background-color: #f3f5f7;
+    background-color: rgba(105, 105, 105, 0.8);
+    color: aliceblue;
     border-radius: 20px;
     z-index: 2;
 }
@@ -211,7 +214,8 @@ body {
     height: 650px;
     margin-top: 30px;
 
-    background-color: rgba(255,255,255);
+    background-color: rgba(105, 105, 105, 0.8);
+    color: aliceblue;
     border-radius: 20px;
     z-index: 2;
 }
@@ -255,17 +259,11 @@ body {
 .calender_content {
     width: 100%;
     height: 100%;
-    background-color: black;
+    background-color: white;
+    opacity: 0.2;
     z-index: 3;
 
     cursor: pointer;
-}
-
-#calender_month {
-    width: 100%;
-    height: 30px;
-
-    background-color: black;
 }
 
 .button {
@@ -294,6 +292,8 @@ body {
 #selectBar {
     width: 100%;
     height: 40px;
+
+    border-radius: 20px;
 }
 
 #sortTime, #sortDifficulty, #selectGame {
@@ -302,7 +302,7 @@ body {
     height: 40px;
 
     list-style: none;
-    background-color: rgba(79, 79, 79, 0.8);
+    background-color: rgba(119, 119, 119, 0.8);
 
     overflow: hidden;
 }
@@ -333,7 +333,7 @@ body {
     text-align: center;
 
     list-style: none;
-    background-color: rgba(79, 79, 79, 0.8);
+    background-color: rgba(119, 119, 119, 0.8);
 
     overflow: hidden;
     cursor: pointer;
@@ -348,4 +348,37 @@ body {
 .sideBarBlock {
     margin-top: 20px;
     height: 20px;
+}
+
+#recordList p{
+    width: 50px;
+    height: 20px;
+
+    margin-top: 10px;
+    font-size: 18px;
+    text-align: center;
+    margin-left: 20px;
+    display: inline-block;
+}
+
+#recordList div{
+    width: 200px;
+    height: 20px;
+
+    margin-top: 10px;
+    font-size: 18px;
+    text-align: center;
+    margin-left: 20px;
+    display: inline-block;
+}
+
+#recordList li{
+    list-style: none;
+}
+
+.recordTitle {
+    width: 100%;
+    height: 40px;
+
+    font-weight: bold;
 }

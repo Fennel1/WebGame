@@ -60,7 +60,7 @@ public class information extends HttpServlet {
         jsonObject.put("sweep",sweepRankInfo);
         jsonObject.put("sudoku",sudokuRankInfo);
 
-        System.out.println("Session:" + JSON.toJSONString(jsonObject));
+//        System.out.println("Session:" + JSON.toJSONString(jsonObject));
         resp.getWriter().write(JSON.toJSONString(jsonObject));
     }
 }

@@ -35,6 +35,7 @@ public class record extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        super.doPost(req, resp);
+        System.out.println("record");
         HttpSession session = req.getSession();
         int uid = (Integer)session.getAttribute("uid");
 

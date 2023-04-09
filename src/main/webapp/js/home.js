@@ -12,7 +12,7 @@ var header = new Vue({
         axios.post('http://localhost:8080/WebGame/main')
         .then(function (response) {
             var resp = response.data;
-            console.log(resp);
+//            console.log(resp);
             document.getElementById('uid').innerHTML = 'uid:\t'+resp['uid'];
             document.getElementById('name').innerHTML = 'name:\t'+resp['name'];
         })
@@ -65,6 +65,7 @@ var box = new Vue({
         sweepCount: 0,
         sudokuCount: 0,
         pacmanCount: 0,
+        calenderCount: [],
         uid: 0,
         name: "",
         snakeDifficultly: 0,
@@ -101,7 +102,10 @@ var box = new Vue({
         axios.post('http://localhost:8080/WebGame/record')
         .then(function (response) {
             var resp = response.data;
-            console.log(resp);
+            for (let i=0; i<resp.length; i++){
+                resp[i]['date'] = _this.timeConverter(resp[i]['date']);
+            }
+//            console.log(resp);
             _this.recordList = resp;
         })
         .catch(function (error) {
@@ -110,7 +114,7 @@ var box = new Vue({
         axios.post('http://localhost:8080/WebGame/information')
         .then(function (response) {
             var resp = response.data;
-            console.log(resp);
+//            console.log(resp);
             _this.uid = resp['uid'];
             _this.name = resp['name'];
             _this.snakeDifficultly = resp['snake']['difficulty'];
@@ -129,7 +133,45 @@ var box = new Vue({
         .then(function (response) {
             var resp = response.data;
             console.log(resp);
-
+            _this.snakeCount = resp['snakeCount'];
+            _this.tetrisCount = resp['tetrisCount'];
+            _this.sweepCount = resp['sweepCount'];
+            _this.sudokuCount = resp['sudokuCount'];
+            _this.pacmanCount = resp['pacmanCount'];
+            _this.playCount = resp['allCount'];
+            _this.calenderCount = resp['calenderCount'].length;
+            let cnt = 0;
+            for (let i=0; i<resp['calenderCount'].length; i++){
+                if (resp['calenderCount'][i] != 0){
+                    cnt++;
+                }
+            }
+            _this.dayCount = cnt;
+            var num = 0;
+            for (let i=52; i>=0; i--){
+                for (let j=6; j>=0; j--){
+                    if (_this.isShow[j][i] != -1){
+                        var div = document.getElementById("div"+j+','+i);
+//                        console.log(num, j, i);
+                        if (resp['calenderCount'][num] == 1){
+                            div.style.opacity = 0.4;
+                        }
+                        else if (resp['calenderCount'][num] == 2){
+                            div.style.opacity = 0.5;
+                        }
+                        else if (resp['calenderCount'][num] >= 3){
+                            div.style.opacity = 0.6;
+                        }
+                        else if (resp['calenderCount'][num] >= 5){
+                            div.style.opacity = 0.7;
+                        }
+                        else if (resp['calenderCount'][num] >= 10){
+                            div.style.opacity = 0.8;
+                        }
+                        num++;
+                    }
+                }
+            }
         })
         .catch(function (error) {
             console.log(error);
@@ -142,6 +184,20 @@ var box = new Vue({
         },
         onLeaveTd(col, row) {
             this.msg = "";
+        },
+        timeConverter(UNIX_timestamp){
+          var a = new Date(UNIX_timestamp);
+          var year = a.getFullYear();
+          var month = a.getMonth()+1;
+          var date = a.getDate();
+          var hour = a.getHours();
+          var min = a.getMinutes();
+          var sec = a.getSeconds();
+          var time = year + '/' + month + '/' + date + '-' + hour + ':' + min + ':' + sec ;
+          return time;
+        },
+        nameID(row, col) {
+            return "div" + row + ',' + col;
         }
     }
 })

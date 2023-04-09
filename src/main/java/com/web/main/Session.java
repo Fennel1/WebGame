@@ -42,7 +42,7 @@ public class Session extends HttpServlet {
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         UserInfo user = userMapper.selectByName(name);
         user.setPassword("");
-        System.out.println("Session:" + JSON.toJSONString(user));
+//        System.out.println("Session:" + JSON.toJSONString(user));
 
         resp.getWriter().write(JSON.toJSONString(user));
     }

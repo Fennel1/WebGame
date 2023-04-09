@@ -28,41 +28,41 @@
 <div id="box">
     <div id="sidebar">
         <div class="sideBarBlock"></div>
-        <div class="sideBarDiv">uid:{{uid}}</div>
+        <div class="sideBarDiv">uid:&nbsp;&nbsp;<b>{{uid}}</b></div>
         <div class="sideBarBlock"></div>
-        <div class="sideBarDiv">name:{{name}}</div>
+        <div class="sideBarDiv">name:&nbsp;&nbsp;<b>{{name}}</b></div>
         <div class="sideBarBlock"></div>
         <div class="sideBarBlock"></div>
         <div class="button">修改密码</div>
         <div class="sideBarBlock"></div>
         <div class="button">上传头像</div>
         <div class="sideBarBlock"></div>
-        <div class="sideBarDiv">Snake Rank</div>
-        <div class="sideBarDiv">difficulty:{{snakeDifficultly}}</div>
-        <div class="sideBarDiv">score:{{snakeScore}}</div>
+        <div class="sideBarDiv">Snake</div>
+        <div class="sideBarDiv">difficulty:&nbsp;&nbsp;<b>{{snakeDifficultly}}</b></div>
+        <div class="sideBarDiv">score:&nbsp;&nbsp;<b>{{snakeScore}}</b></div>
         <div class="sideBarBlock"></div>
-        <div class="sideBarDiv">Tetris Rank</div>
-        <div class="sideBarDiv">difficulty:{{tetrisDifficultly}}</div>
-        <div class="sideBarDiv">score:{{tetrisScore}}</div>
+        <div class="sideBarDiv">Tetris</div>
+        <div class="sideBarDiv">difficulty:&nbsp;&nbsp;<b>{{tetrisDifficultly}}</b></div>
+        <div class="sideBarDiv">score:&nbsp;&nbsp;<b>{{tetrisScore}}</b></div>
         <div class="sideBarBlock"></div>
-        <div class="sideBarDiv">Sweep Rank</div>
-        <div class="sideBarDiv">difficulty:{{sweepDifficultly}}</div>
-        <div class="sideBarDiv">score:{{sweepScore}}</div>
+        <div class="sideBarDiv">Sweep</div>
+        <div class="sideBarDiv">difficulty:&nbsp;&nbsp;<b>{{sweepDifficultly}}</b></div>
+        <div class="sideBarDiv">score:&nbsp;&nbsp;<b>{{sweepScore}}</b></div>
         <div class="sideBarBlock"></div>
-        <div class="sideBarDiv">Sudoku Rank</div>
-        <div class="sideBarDiv">difficulty:{{sudokuDifficultly}}</div>
-        <div class="sideBarDiv">score:{{sudokuScore}}</div>
+        <div class="sideBarDiv">Sudoku</div>
+        <div class="sideBarDiv">difficulty:&nbsp;&nbsp;<b>{{sudokuDifficultly}}</b></div>
+        <div class="sideBarDiv">score:&nbsp;&nbsp;<b>{{sudokuScore}}</b></div>
     </div>
     <div id="calender">
         <div id="calender_stats">
-            <div>最近365天已游玩{{dayCount}}天 共游玩{{playCount}}次</div>
-            <div>Snake:{{snakeCount}}次 Tetris:{{tetrisCount}}次 Sweep:{{sweepCount}}次 Sudoku:{{sudokuCount}}次 PacMan:{{pacmanCount}}次</div>
+            <div>最近365天已游玩&nbsp;<b>{{dayCount}}天</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;共游玩&nbsp;<b>{{playCount}}次</b></div>
+            <div>Snake:&nbsp;<b>{{snakeCount}}次</b>&nbsp;&nbsp;&nbsp;&nbsp;Tetris:&nbsp;<b>{{tetrisCount}}次</b>&nbsp;&nbsp;&nbsp;&nbsp;Sweep:&nbsp;<b>{{sweepCount}}次</b>&nbsp;&nbsp;&nbsp;&nbsp;Sudoku:&nbsp;<b>{{sudokuCount}}次</b>&nbsp;&nbsp;&nbsp;&nbsp;PacMan:&nbsp;<b>{{pacmanCount}}次</b></div>
         </div>
         <div id="calender_main">
             <div v-for="col in cols" class="calender_row">
                 <div v-for="row in rows" class="calender_block" v-bind:title="msg"
                      @mouseenter="onEnterTd(col, row)">
-                    <div :class="{calender_content:isShow[col][row]!=-1}"></div>
+                    <div :id="nameID(col, row)" :class="{calender_content:isShow[col][row]!=-1}"></div>
                 </div>
             </div>
         </div>
@@ -93,10 +93,16 @@
             </div>
         </div>
         <ul id="recordList">
+            <li class="recordTitle">
+                <p>Rank</p>
+                <div>Game</div>
+                <p>Difficulty</p>
+                <div>Score</div>
+                <div>Date</div>
             <li class="" v-for="(item,index) in recordList">
-                <div>{{index+1}}</div>
+                <p>{{index+1}}</p>
                 <div>{{item.game}}</div>
-                <div>{{item.difficulty}}</div>
+                <p>{{item.difficulty}}</p>
                 <div>{{item.score}}</div>
                 <div>{{item.date}}</div>
             </li>
